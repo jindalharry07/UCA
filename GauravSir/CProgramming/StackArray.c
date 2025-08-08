@@ -17,7 +17,7 @@ void resize(int newCapacity){
 }
 
 void push(int value){
-	if(top==capacity){
+	if(top==capacity-1){
 		resize(capacity*2);
 	}
 	stack[++top]=value;
@@ -25,14 +25,16 @@ void push(int value){
 
 int pop(){
 	if(top==-1){
-		printf("Stack underflow! Can't pop)");
+		printf("Stack underflow! Can't pop \n");
 		return -1;
 	}	
 
 	int val=stack[top--];
-	if(top+1>0&&(top+1)<=capacity/4&&capacity>1){
-		resize(capacity/4);
-	}
+	if((top + 1) < capacity / 2 && capacity > 4){
+        int newCapacity = 3*capacity / 4;
+        if(newCapacity < 4) newCapacity = 4;  // keep minimum capacity 4
+        resize(newCapacity);
+    }
 	return val;
 }
 

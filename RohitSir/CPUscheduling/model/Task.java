@@ -45,6 +45,13 @@ public class Task implements Runnable {
         this.priority = priority;
     }
 
+    public Task(int taskId, int arrivalTime, int burstTime) {
+        this.taskId = taskId;
+        this.arrivalTime = arrivalTime;
+        this.burstTime = burstTime;
+        this.remainingTime = burstTime; // initialize remaining time
+    }
+
     public void resume() {
         synchronized (lock) {
             isPaused = false;
@@ -117,8 +124,25 @@ public class Task implements Runnable {
         return waitingTime;
     }
 
+    public void setTurnaroundTime(int turnaroundTime) {
+        this.turnaroundTime = turnaroundTime;
+    }
+
+    public void setWaitingTime(int waitingTime) {
+        this.waitingTime = waitingTime;
+    }
+
     public int getTurnaroundTime() {
         return turnaroundTime;
+    }
+
+    public void executeUnit() {
+        if (remainingTime > 0)
+            remainingTime--;
+    }
+
+    public void setCompletionTime(int time) {
+        this.completionTime = time;
     }
 
     @Override

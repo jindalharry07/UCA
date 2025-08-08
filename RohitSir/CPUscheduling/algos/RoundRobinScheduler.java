@@ -51,6 +51,7 @@ public class RoundRobinScheduler implements Scheduler {
                     q.add(taskList.get(idx));
                     idx++;
                 }
+                System.out.printf("Task %d remaining time: %d at time %d\n", currentTask.getTaskId(), currentTask.getRemainingTime(), currentTime);
             }
 
             if (currentTask.isCompleted()) {

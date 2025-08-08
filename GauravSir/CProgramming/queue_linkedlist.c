@@ -65,7 +65,7 @@ void display(struct Queue* q) {
     struct Node* temp = q->front;
     while (temp != NULL) {
         printf("%d ", temp->data);
-        temp = temp->next
+        temp = temp->next;
     }
     printf("\n");
 }
