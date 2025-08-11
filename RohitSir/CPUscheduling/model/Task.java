@@ -43,6 +43,8 @@ public class Task implements Runnable {
         this.arrivalTime = arrivalTime;
         this.burstTime = burstTime;
         this.priority = priority;
+        this.remainingTime = burstTime; // initialize remaining time
+
     }
 
     public Task(int taskId, int arrivalTime, int burstTime) {

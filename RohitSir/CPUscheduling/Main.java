@@ -1,5 +1,6 @@
 package CPUscheduling;
 import CPUscheduling.model.Task;
+import CPUscheduling.algos.PriorityScheduler;
 import CPUscheduling.algos.RoundRobinScheduler;
 import CPUscheduling.algos.ShortestRemaingTime;
 
@@ -11,7 +12,7 @@ public class Main {
         List<Task> taskList = new ArrayList<>();
 
         System.out.print("Enter number of tasks: ");
-        // int n = sc.nextInt();
+        int n = sc.nextInt();
 
         // for (int i = 0; i < n; i++) {
         //     System.out.printf("Enter arrivalTime, burstTime, priority for Task %d: ", i + 1);
@@ -35,16 +36,24 @@ public class Main {
         taskList.sort((t1, t2) -> t1.getArrivalTime() - t2.getArrivalTime());
         // RoundRobinScheduler rr = new RoundRobinScheduler(tq);
         RoundRobinScheduler rr = new RoundRobinScheduler(timeQuantum);
-        // rr.execute(taskList);
+        rr.execute(taskList);
 
-        taskList.add(new Task(1, 0, 6));
-        taskList.add(new Task(2, 1, 8));
-        taskList.add(new Task(3, 2, 7));
-        taskList.add(new Task(4, 3, 3));
+        // taskList.add(new Task(1, 0, 6));
+        // taskList.add(new Task(2, 1, 8));
+        // taskList.add(new Task(3, 2, 7));
+        // taskList.add(new Task(4, 3, 3));
 
         // Create scheduler instance
         ShortestRemaingTime srtf = new ShortestRemaingTime();
-        srtf.execute(taskList);
+        // srtf.execute(taskList);
+
+        taskList.add(new Task(1,0,6,2));
+        taskList.add(new Task(2,1,8,1));
+        taskList.add(new Task(3,2,7,3));
+        taskList.add(new Task(4,3,3,2));
+
+        PriorityScheduler pq=new PriorityScheduler();
+        pq.execute(taskList);
 
     }
 }
