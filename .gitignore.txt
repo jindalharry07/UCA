@@ -1,1 +1,9 @@
 Web Dev/
+
+# Ignore all .class files
+*.class
+
+.vscode/
+output/
+*.exe
+
