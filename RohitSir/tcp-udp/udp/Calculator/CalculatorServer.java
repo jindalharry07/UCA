@@ -11,17 +11,17 @@ public class CalculatorServer {
 
       while(true) {
         DatagramPacket packet =new DatagramPacket (buffer,buffer.length);
-	socket.receive(packet);
+        socket.receive(packet);
 
-	String req = new String (packet.getData(),0,packet.getLength());
+        String req = new String (packet.getData(),0,packet.getLength());
 
-	System.out.println("Recived request: "+req);
+        System.out.println("Recived request: "+req);
 
-	String res = calculate(req);
-	byte[] resBytes = res.getBytes();
-	DatagramPacket resPacket = new DatagramPacket( resBytes,resBytes.length,packet.getAddress(),packet.getPort());
+        String res = calculate(req);
+        byte[] resBytes = res.getBytes();
+        DatagramPacket resPacket = new DatagramPacket( resBytes,resBytes.length,packet.getAddress(),packet.getPort());
 
-	socket.send(resPacket);
+        socket.send(resPacket);
       }
     }catch(Exception e) {
       e.printStackTrace();
@@ -41,11 +41,11 @@ public class CalculatorServer {
       switch (op) {
         case "ADD": return "Result = " + (num1 + num2);
         case "SUB": return "Result = " + (num1 - num2);
-	case "MUL": return "Result = " + (num1 * num2);
-	case "DIV":
-	  if (num2 == 0) return "Error: Division by zero!";
+        case "MUL": return "Result = " + (num1 * num2);
+        case "DIV":
+          if (num2 == 0) return "Error: Division by zero!";
             return "Result = " + (num1 / num2);
-	default: return "Unsupported operation! Use ADD, SUB, MUL, DIV.";
+        default: return "Unsupported operation! Use ADD, SUB, MUL, DIV.";
       }
     }catch (Exception e) {
       return "Error in calculation!";
