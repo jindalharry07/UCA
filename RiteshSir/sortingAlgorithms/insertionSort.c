@@ -1,4 +1,6 @@
 #include <stdio.h>
+/* Copyright 2025 Harry Jindal */
+#define kMaxArraySize 1000
 
 /*
  * Algorithum: Insertion Sort
@@ -28,8 +30,13 @@ int main() {
   int n;
   printf("Enter number of elements: ");
   scanf("%d", &n);
+  if (n > kMaxArraySize) {
+    printf("Error: Maximum allowed size is %d\n", kMaxArraySize);
+    return 1;
+  }
 
-  int arr[n];
+  int arr[kMaxArraySize];
+
   printf("Enter %d elements:\n", n);
   for (int i = 0; i < n; i++) {
     scanf("%d", &arr[i]);

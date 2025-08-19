@@ -1,4 +1,7 @@
 #include<stdio.h>
+/* Copyright 2025 Harry Jindal */
+
+#define kMaxArraySize 1000
 
 /*
  * Algorithum: Bubble Sort
@@ -15,16 +18,18 @@
 void bubbleSort(int arr[], int n) {
   for (int i = 0; i < n - 1; i++) {
     int swapped = 0;
-    for (int j = 0; j < n - 1;j++) {
-      if (arr[j] > arr[j+1]) {
+    for (int j = 0; j < n - 1; j++) {
+      if (arr[j] > arr[j + 1]) {
         // swap
-	int temp = arr[j];
-	arr[j] = arr[j+1];
-	arr[j+1] = temp;
-	swapped = 1;
+        int temp = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp;
+        swapped = 1;
       }
     }
-    if (swapped == 0) break;
+    if (swapped == 0) {
+      break;
+    }
   }
 }
 
@@ -33,18 +38,22 @@ int main() {
   printf("Enter number of elements: ");
   scanf("%d", &n);
 
-  int arr[n];
-  printf("Enter %d elements :\n",n);
-  for(int i = 0; i < n; i++) {
+  if (n > kMaxArraySize) {
+    printf("Error: Maximum allowed size is %d\n", kMaxArraySize);
+    return 1;
+  }
+
+  int arr[kMaxArraySize];
+  printf("Enter %d elements :\n", n);
+  for (int i = 0; i < n; i++) {
     scanf("%d", &arr[i]);
   }
-  
-  bubbleSort(arr,n);
+
+  bubbleSort(arr, n);
   printf("Sorted Array: ");
-  for( int i = 0; i < n; i++) {
-    printf("%d ",arr[i]);
+  for (int i = 0; i < n; i++) {
+    printf("%d ", arr[i]);
   }
   printf("\n");
-
   return 0;
 }
