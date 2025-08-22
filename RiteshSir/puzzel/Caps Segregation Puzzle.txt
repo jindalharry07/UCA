@@ -1,0 +1,75 @@
+====================================
+Caps Segregation Puzzle - Spatial Partitioning Approach
+====================================
+
+Problem Recap:
+--------------
+A group of people enters a room, each wearing either a White (W) or Black (B) cap.
+- Each person can see everyone else's cap but not their own.
+- Communication is not allowed after caps are worn.
+- The goal is to segregate into groups based on cap colors without knowing your own cap.
+
+---
+
+Approach: Spatial Partitioning by Positioning "Between" Groups
+-------------------------------------------------------------
+
+1. The first person enters and stands anywhere (no information yet).
+
+2. The second person sees the first and stands somewhere different (e.g., opposite side) to create an initial partition.
+
+3. The third person observes the positions and caps of the first two people.
+   - If the third person's cap matches one group, they stand close to that group.
+   - Otherwise, they stand spatially **between** the groups to create a finer partition.
+
+4. Each subsequent person enters and:
+   - Observes the existing groups and partitions formed by people already standing.
+   - Stands **between** two groups with different caps if they do not belong clearly to one.
+   - Or stands close to their own cap group if identifiable by position.
+
+---
+
+Example Walkthrough with Numbered People:
+
+Person | Cap | Positioning Description
+-------|-----|--------------------------------------------------------------------------------
+1      | W   | Stands anywhere initially.
+2      | B   | Stands somewhere different from 1, creating a partition.
+3      | B   | Sees 1 (W) and 2 (B), stands **between** 1st and 2nd person to refine partition.
+4      | W   | Sees partition between 1 (W) and 3 (B), stands **between** 1st and 3rd person.
+5      | W   | Sees partition between 4 (W) and 3 (B), stands **between** 4th and 3rd person.
+...    | ... | Continues similarly, always positioning between existing partitions.
+
+---
+
+Intuition:
+----------
+- Each person uses visible cap colors and positions to decide where to stand.
+- By standing between groups with different caps, people gradually create two distinct spatial clusters.
+- No one needs to know their own cap color, yet groups self-segregate naturally.
+
+---
+
+Advantages:
+-----------
+- Simple, visual, and self-organizing.
+- Works without knowledge of own cap color.
+- Clusters become clearer as more people position themselves.
+
+---
+
+Limitations:
+------------
+- Requires strict adherence to the “stand between” rule.
+- Early positioning crucial for clear partitions.
+- Might face challenges if many caps are mixed closely initially.
+
+---
+
+Summary:
+--------
+This spatial partitioning approach allows people to segregate by cap color through relative positioning alone, leveraging visible information about others and a simple "stand between" strategy.
+
+---
+
+End of Document

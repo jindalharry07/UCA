@@ -1,0 +1,90 @@
+===========================
+Horse Race Ranking Problem
+===========================
+
+Problem Statement:
+------------------
+There are 25 horses competing on a race track that has only 5 tracks. At a time, only 5 horses can race.
+
+Question:
+---------
+What is the minimum number of races required to determine the 1st, 2nd, and 3rd fastest horses?
+
+---
+
+Step 1: Initial grouping
+
+- Divide the 25 horses into 5 groups of 5 horses each.
+- Conduct 5 races, one for each group.
+- After these 5 races, the relative ranking of horses within each group is known.
+
+Races so far: 5
+
+---
+
+Step 2: Race the winners of each group
+
+- Take the winners (fastest horses) from each group and race them in the 6th race.
+- This race determines the fastest horse overall (the winner of this race).
+- Also partially ranks the groups based on their fastest horses.
+
+Races so far: 6
+
+---
+
+Step 3: Identify candidates for 2nd and 3rd place
+
+- Suppose groups are named A, B, C, D, E with horses ranked within each group as:
+
+  Group A: A1 > A2 > A3 > A4 > A5  
+  Group B: B1 > B2 > B3 > B4 > B5  
+  Group C: C1 > C2 > C3 > C4 > C5  
+  Group D: D1 > D2 > D3 > D4 > D5  
+  Group E: E1 > E2 > E3 > E4 > E5
+
+- After the winners' race (6th race), suppose the order is:
+
+  A1 (1st), B1 (2nd), C1 (3rd), D1, E1
+
+- The fastest horse overall is A1.
+
+--------------
+--------------
+
+Step 4: Determine potential 2nd and 3rd place horses
+
+- The 2nd and 3rd best horses must be among:
+
+  - A2 and A3 (horses from A that lost only to A1)
+  - B1 and B2 (top two horses from group B, since B1 came 2nd in winners race)
+  - C1 (3rd place in winners race)
+
+- Horses from groups D and E cannot be 2nd or 3rd because they lost to faster horses in other groups.
+
+---
+
+Step 5: Final race for 2nd and 3rd places
+
+- Race A2, A3, B1, B2, and C1 in the 7th race.
+- The top two horses in this race are the 2nd and 3rd fastest overall.
+
+---
+
+Total races required:
+
+| Step                                    | Races Count | Total Races |
+|-----------------------------------------|-------------|-------------|
+| Initial 5 group races                   | 5           | 5           |
+| Winners race (race of 5 winners)        | 1           | 6           |
+| Final race (candidates for 2nd and 3rd) | 1           | 7           |
+
+---
+
+Final Answer:
+-------------
+
+It takes a **minimum of 7 races** to determine the 1st, 2nd, and 3rd fastest horses out of 25 when only 5 can race at a time.
+
+---
+
+End of problem.

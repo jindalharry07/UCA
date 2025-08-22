@@ -1,0 +1,62 @@
+=====================================
+Knockout Tournament Questions
+=====================================
+
+Context:
+---------
+- Tournament starts with 2^n players.
+- Matches are knockout style: loser eliminated in each match.
+- Winner is the last player remaining.
+
+---
+
+Q1: How many matches to find the winner?
+
+Answer:
+- Every match eliminates exactly one player.
+- To go from 2^n players down to 1 winner, total matches required:
+
+2^n - 1
+
+---
+
+Q2: How many matches to find the second-best player?
+
+Answer:
+- The second-best player is among those who lost directly to the winner during the tournament.
+- The winner plays exactly n matches (one in each round).
+- To find the second-best, you need to find the best player among the winner’s opponents.
+- Therefore, the total matches to find the second-best player are:
+
+= Matches to find winner + Matches to determine the best among winner's opponents
+
+- The number of winner’s opponents is n, so to find the best among them requires n - 1 additional matches.
+
+Hence:
+
+Total matches = (2^n - 1) + (n - 1) = 2^n + n - 2
+
+---
+
+Example:
+---------
+For n=3 (8 players):
+
+- Matches to find winner = 2^3 - 1 = 7
+- Matches among winner’s opponents to find second-best = 3 - 1 = 2
+- Total matches to find both 1st and 2nd best:
+
+7 + 2 = 9
+
+---
+
+Summary:
+---------
+| Question                        | Number of Matches               |
+|---------------------------------|---------------------------------|
+| To find winner                  | 2^n - 1                         |
+| To find second-best (runner-up) | 2^n + n - 2                     |
+
+---
+
+End of Document

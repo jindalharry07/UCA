@@ -1,0 +1,89 @@
+===========================
+Airplane Seating Problem
+===========================
+
+Problem Statement:
+------------------
+An airplane has 100 seats numbered 1 to 100, and there are 100 passengers boarding the plane in order: passenger 1, then passenger 2, ..., up to passenger 100.
+
+- Passenger 1 is careless and picks a random seat (any seat from 1 to 100).
+- Each subsequent passenger:
+  - If their own seat is available, they sit in it.
+  - Otherwise, they pick a random free seat.
+
+Question:
+---------
+What is the probability that the 100th passenger will sit in their assigned seat number 100?
+
+---
+
+Detailed Explanation:
+---------------------
+Let P_n be the probability that the nth passenger sits in their own seat.
+
+Step : Analyzing Passenger 1's choice
+
+Passenger 1 picks a random seat from 1 to n (here n = 100):
+
+- If Passenger 1 picks seat 1 (his own seat), then all passengers after him will find their seats empty and sit in their own seats. So the 100th passenger definitely sits in seat 100.  
+  Probability = 1/n
+
+- If Passenger 1 picks seat n (seat 100), then the 100th passenger will have no choice but to pick a different seat, so the 100th passenger does NOT sit in their own seat.  
+  Probability = 1/n
+
+- If Passenger 1 picks any other seat k where 2 <= k <= n-1, then the problem reduces to the same situation but with passengers from k to n and seats from k to n. The probability that the last passenger in this smaller group gets their seat is P_{n-k+1}.  
+  Probability = (1/n) * P_{n-k+1}
+
+---
+
+
+
+Step : Compute first values
+- n=1   person 1 have 1 probability that person can get its seat
+- n=2:  2 * P_2 = P_1 = 1  =>  P_2 = 1/2
+- n=3:  3 * P_3 = P_1 + P_2 = 1 + 1/2 = 3/2  =>  P_3 = 1/2
+- n=4:  4 * P_4 = P_1 + P_2 + P_3 = 1 + 1/2 + 1/2 = 2  =>  P_4 = 1/2
+
+By induction, for all n >= 2:
+
+P_n = 1/2
+
+---
+
+Step : Final answer
+
+For n = 100:
+
+P_100 = 1/2 = 0.5
+
+The probability that the 100th passenger sits in their own seat is 50%.
+
+---
+
+Intuition Summary:
+- Passenger 1 either picks seat 1 or seat 100 (both equally likely in a simplified way).
+- If seat 1 is picked, everyone sits in their own seat.
+- If seat 100 is picked, the last passenger loses their seat.
+- The recursive complexity simplifies to a 50% chance for the last passenger.
+
+---
+
+Optional: Java code to compute P_n iteratively
+
+```java
+public class AirplaneSeatingProbability {
+    public static void main(String[] args) {
+        double[] P = new double[101];
+        P[1] = 1.0;
+
+        for (int n = 2; n <= 100; n++) {
+            double sum = 0.0;
+            for (int j = 1; j < n; j++) {
+                sum += P[j];
+            }
+            P[n] = sum / n;
+        }
+
+        System.out.println("Probability that passenger 100 sits in their own seat: " + P[100]);
+    }
+}
