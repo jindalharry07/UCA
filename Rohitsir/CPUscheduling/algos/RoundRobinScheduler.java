@@ -1,5 +1,6 @@
 
 package CPUscheduling.algos;
+import CPUscheduling.model.Scheduler;
 import CPUscheduling.model.Task;
 import java.util.*;
 

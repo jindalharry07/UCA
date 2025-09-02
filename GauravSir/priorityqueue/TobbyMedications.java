@@ -1,5 +1,3 @@
-package priorityqueue;
-
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
@@ -49,22 +47,6 @@ public final class TobbyMedications {
         return Integer.compare(this.time, other.time);
       }
       return Integer.compare(this.priority, other.priority);
-    }
-
-    public int getTime() {
-      return time;
-    }
-
-    public int getPriority() {
-      return priority;
-    }
-    
-    public String getName() {
-      return name;
-    }
-    
-    public int getFreq() {
-      return freq;
     }
 
   }

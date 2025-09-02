@@ -20,26 +20,29 @@ using namespace std;
  *   Space Complexity: O(n) -- due to recursion stack
  */
 
-void towerOfHanoi (int n, char s, char h, char d) {
+int towerOfHanoi (int n, char s, char h, char d) {
   if (n == 0) {
-    return;
+    return 0;
   }
 
   if (n == 1) {
     cout << "Move " << n << " from " << s << " to " << d << "\n";
-    return;
+    return 1;
   }
 
-  towerOfHanoi(n-1,s,d,h);
+  int steps1 = towerOfHanoi(n-1,s,d,h);
   cout << "Move " << n << " from " << s << " to " << d << "\n";
-  towerOfHanoi(n-1,h,s,d);
+  int steps2 = towerOfHanoi(n-1,h,s,d);
+
+  return steps1 + steps2 + 1;
 }
 
 int main() {
   int n;
   cin >> n;
 
-  towerOfHanoi(n,'S','H','D');
+  int steps = towerOfHanoi(n,'S','H','D');
+  cout << "Number of steps: " << steps << "\n";
 
   return 0;
 }

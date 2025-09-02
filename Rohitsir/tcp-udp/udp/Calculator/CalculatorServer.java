@@ -19,7 +19,7 @@ public class CalculatorServer {
 
         String res = calculate(req);
         byte[] resBytes = res.getBytes();
-        DatagramPacket resPacket = new DatagramPacket( resBytes,resBytes.length,packet.getAddress(),packet.getPort());
+        DatagramPacket resPacket = new DatagramPacket(resBytes, resBytes.length, packet.getAddress(), packet.getPort());
 
         socket.send(resPacket);
       }

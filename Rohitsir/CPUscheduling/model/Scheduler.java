@@ -1,6 +1,5 @@
 
-package CPUscheduling.algos;
-import CPUscheduling.model.Task;
+package CPUscheduling.model;
 import java.util.List;
 
 public interface Scheduler {
