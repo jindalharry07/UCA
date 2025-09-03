@@ -1,4 +1,4 @@
-
+package Generic;
 /**
  * The MaxPriority Queue class represents a priority
  * queue for integer data types. It supports
@@ -8,7 +8,7 @@
  * the number of elements in the queue.
  */
 
-public class PriorityQueueGeneric<Generic extends Comparable<Generic>> {
+public class MaxPriorityQueueGeneric<Generic extends Comparable<Generic>> {
   private Generic[] pq; // binary heap using 1-based indexing
   private int size;    // number of elements in the queue
 
@@ -17,7 +17,7 @@ public class PriorityQueueGeneric<Generic extends Comparable<Generic>> {
    *
    * @param capacity - initial size of the queue.
    */
-  public PriorityQueueGeneric(int capacity) {
+  public MaxPriorityQueueGeneric(int capacity) {
     this.pq = (Generic []) new Comparable[capacity + 1];
     this.size = 0;
   }
@@ -109,7 +109,7 @@ public class PriorityQueueGeneric<Generic extends Comparable<Generic>> {
    * @param args - not used
    */
   public static void main(String[] args) {
-    PriorityQueueGeneric<Integer> pq = new PriorityQueueGeneric<Integer>(32);
+    MaxPriorityQueueGeneric<Integer> pq = new MaxPriorityQueueGeneric<Integer>(32);
     pq.insert(2);
     pq.insert(7);
     pq.insert(4);
