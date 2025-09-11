@@ -21,3 +21,6 @@ public class EchoServer {
     }
   }
 }
+
+
+// nc -u EchoServer
