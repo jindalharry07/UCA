@@ -1,0 +1,33 @@
+📌 Base64 Encoding — Summary
+🧠 Base64 Kya Hai?
+Base64 ek encoding scheme hai jo binary data (jaise text, images) ko readable ASCII characters me convert karti hai.
+Ye mainly data transfer (email, APIs, JSON) me use hoti hai taaki data safe aur lossless transmit ho.
+
+🏗 Base64 Encode Steps
+
+1. String → ASCII → Binary
+- Har character ko uske ASCII value me convert karo aur 8-bit binary me likho.
+
+2. Group in 3 Bytes (24 Bits)
+- Input ko 3-byte blocks me divide karo.
+- Agar data 3 ka multiple nahi hai → extra 0 bits add karo (padding).
+
+3. Split in 6-Bit Groups
+- 24 bits ko 6-6 ke groups me tod do → total 4 groups bante hain.
+
+4. Map to Base64 Table
+- Har 6-bit group ko Base64 ke index table ke according character me convert karo.
+
+5. Add '=' for Padding
+- Agar original data 3 bytes ka multiple nahi tha → output me = lagake indicate karo kitna padding add hua.
+
+🧾 Example (Quick)
+
+Input: "M"
+ASCII: 77 → Binary: 01001101
+
+Padding: 01001101 00000000 00000000 (3 bytes bana diye)
+
+6-bit groups: 010011 010000 000000 000000
+
+Base64 chars: T Q A A → Result = TQ==

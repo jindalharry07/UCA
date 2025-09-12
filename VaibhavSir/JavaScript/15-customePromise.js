@@ -30,7 +30,7 @@ function PromiseCustom(executorFuncArg) {
     successCallBack = callBack;
   };
 
-  this.catch = function () {
+  this.catch = function (callBack) {
     failureCallBack = callBack;
   };
 
@@ -48,8 +48,10 @@ function PromiseCustom(executorFuncArg) {
 }
 
 var customePromise1 = new PromiseCustom(customePromiseExecuter);
-customePromise1.then((removeEventListener)=>{
+customePromise1.then((resolveReturnValue)=>{
   console.log("Fulfiled");
 })
 
-customePromise1.catch(())
+customePromise1.catch((rejectedReturnValue)=>{
+  console.log("Rejected");
+})

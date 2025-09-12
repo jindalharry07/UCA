@@ -1,0 +1,32 @@
+http is a
+- generic
+- application level (uses TCP-IP for communication)
+- stateless protocol -> every req is independent
+
+
+
+URI -- website name 
+-Uniform Resource Identifier — basically the website address or resource locator
+
+
+HTTP Status Codes Overview
+Category	      Code  Range	Meaning
+Informational	  1xx	  Request received, continuing process
+Success	        2xx	  Action was successfully received, understood, and accepted
+Redirection	    3xx	  Further action needed to complete the request
+Client Error	  4xx	  Request contains bad syntax or cannot be fulfilled
+Server Error	  5xx	  Server failed to fulfill an apparently valid request
+
+
+
+Ajax is a  (sends only that data which needs to update)
+-AJAX = Asynchronous JavaScript and XML (although nowadays it can use JSON or other formats, not just XML)
+-Allows you to send/receive data asynchronously without reloading the entire webpage
+-Sends only the data that needs to be updated, improving performance and user experience
+
+
+
+
+JSON vs XML
+
+
