@@ -1,5 +1,6 @@
 // fetch is mordern way to use ajax but uses promises
 fetch("www.google.com"); // it return promise
+// It is Browser api
 var x = fetch("https://localhost:8080/data");
 x.then((response) => {
   // if(response.ok){
@@ -28,6 +29,7 @@ xmlHTTPRequest.onreadystatechange = function () {
   }
 };
 
+
 // Implementing custom fetch using XMLHttpRequest
 
 // Accpts a url
@@ -44,7 +46,13 @@ function customFetch(url) {
     xmlHTTPRequest.send();
 
     xmlHTTPRequest.onreadystatechange = function () {
-      if (xmlHTTPRequest.readyState === 4) {
+      if (xmlHTTPRequest.readyState === 4) { //response has been fully received 
+        // Value	  State	    Meaning
+        // 0	      UNSENT	  Request not initialized
+        // 1	      OPENED	  open() has been called
+        // 2	      HEADERS_  RECEIVED	send() has been called, and headers have been received
+        // 3	      LOADING	  Response is being received (data is being downloaded)
+        // 4	      DONE	    Entire operation is complete
         console.log(
           "Response received from server is : ",
           xmlHTTPRequest.response
@@ -60,3 +68,6 @@ var data = customFetch("https://localhost:8080/data");
 data.then((response) => {
   console.log("Response from custom fetch is : ", response);
 })
+
+
+// Implement sleep method in promise

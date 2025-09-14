@@ -2,6 +2,8 @@
 import java.util.Base64;
 import java.util.Scanner;
 
+// https://leetcode.com/problems/encode-and-decode-tinyurl/description/
+
 public class Base64Encoder {
   // Base64 Table (Index -> Character)
   private static final String BASE64_TABLE = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";

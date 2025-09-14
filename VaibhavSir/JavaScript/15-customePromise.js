@@ -11,15 +11,6 @@ function PromiseCustom(executerFunArg) {
 }
 var promise1 = new PromiseCustom(customePromiseExecuter);
 
-// simple promise with resolve and reject
-function customePromiseExecuter(resolve, reject) {
-  // Asynchronous Operation
-  setTimeout(() => {
-    console.log("Promise 1 executed");
-    resolve("Promise1 executed");
-    // reject("Promise1 rejected");
-  }, 2000);
-}
 
 function PromiseCustom(executorFuncArg) {
   this.state = "pending";
@@ -48,6 +39,17 @@ function PromiseCustom(executorFuncArg) {
 }
 
 var customePromise1 = new PromiseCustom(customePromiseExecuter);
+// simple promise with resolve and reject
+function customePromiseExecuter(resolve, reject) {
+  // Asynchronous Operation
+  setTimeout(() => {
+    console.log("Promise 1 executed");
+    resolve("Promise1 executed");
+    // reject("Promise1 rejected");
+  }, 2000);
+}
+
+
 customePromise1.then((resolveReturnValue)=>{
   console.log("Fulfiled");
 })
