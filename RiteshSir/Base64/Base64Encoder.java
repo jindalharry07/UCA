@@ -34,8 +34,7 @@ public class Base64Encoder {
     }
 
     for (int i = 0; i < padded.length; i += 3) {
-      int combined = ((padded[i] & 255) << 16) | ((padded[i + 1] & 255) << 8) | ((padded[i + 2] & 255)); // 0xFF = 255
-                                                                                                         // in bits
+      int combined = ((padded[i] & 255) << 16) | ((padded[i + 1] & 255) << 8) | ((padded[i + 2] & 255)); // 0xFF = 255 in bits
 
       // this is combined binary int
 

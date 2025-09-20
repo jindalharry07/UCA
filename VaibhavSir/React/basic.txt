@@ -1,0 +1,43 @@
+REACT
+
+It is matained by meta
+functionality of like, comment and posting
+they wanted to do these functionalities to be very fast 
+
+how the user click on like then in backend all the calls process which that time 
+
+they thought that put no. of likes in local state and updates 
+
+----------------------                                              ------------------------
+-    Frontend        -       User hits like button      ------->    -      Backend server  -
+-                    -                                              -                      -
+-   eg facebook.com  -       No. of likes on UI         <-------    -                      -
+-                    -                                              -                      -
+----------------------                                              ------------------------
+
+
+Now What happens in React 
+----------------------                                              ------------------------
+-    Frontend        -       User hits like button      ------->    -      Backend server  -
+-                    -                                              -                      -
+-   eg facebook.com  -       No. of likes on UI         <-------    -                      -
+-                    -                                              -                      -
+----------------------                                              ------------------------
+
+Created Virtual DOM 
+
+Its copy of real dom when data comes from user change in virtual dom 
+when user refresh the site then virtual changes the real dom only that part which is changed
+
+converted the small functionality in project 
+and used in multiple places
+
+
+
+react is libary  -- // library is a piece of code that can be  utilised in exisitng application to make things easier to do
+- used to create small components
+
+nextjs is not libary its ramework is a complete project completey owns
+
+
+-- diff btw libary and framework
