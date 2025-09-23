@@ -8,6 +8,7 @@ how the user click on like then in backend all the calls process which that time
 
 they thought that put no. of likes in local state and updates 
 
+```
 ----------------------                                              ------------------------
 -    Frontend        -       User hits like button      ------->    -      Backend server  -
 -                    -                                              -                      -
@@ -23,6 +24,7 @@ Now What happens in React
 -   eg facebook.com  -       No. of likes on UI         <-------    -                      -
 -                    -                                              -                      -
 ----------------------                                              ------------------------
+```
 
 Created Virtual DOM 
 
@@ -41,3 +43,22 @@ nextjs is not libary its ramework is a complete project completey owns
 
 
 -- diff btw libary and framework
+
+React recomendes next js to be used as framework
+
+
+browser download jsx file at end then check if their is jsx file and then convert it it is fetched as xhr(XMLHttpRequest)
+
+if we use js type as module then we have t import and export
+if script.js file become module then complete project become modeule
+
+
+why virtual dom comes to function ?
+-> if multiple upadate comes then dom hangs Dom operation are heavy and expensive react cannot optimise that
+-> react creates a virtual dom (proper js object) and now update comes in virtual dom not directly in dom then react group the updates in batch and transfer it to dom batch by batch (it minimise the number of update on actual dom) 100 updates can be conerted into 10 batches.
+
+- Virtual dom will push only that part in actual dom which is ectually change in dom
+
+
+React
+- Not a good practice to modify argument but we can modify

@@ -5,3 +5,5 @@ function sumAll(...items) {
   }
   return sum;
 }
+
+export { sumAll };
