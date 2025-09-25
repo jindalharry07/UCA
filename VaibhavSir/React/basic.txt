@@ -61,4 +61,13 @@ why virtual dom comes to function ?
 
 
 React
+https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements
+
 - Not a good practice to modify argument but we can modify
+
+
+Use State 
+used to change the value in dom
+returns the array
+
+ract dev tools download
