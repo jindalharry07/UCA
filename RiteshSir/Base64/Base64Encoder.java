@@ -9,7 +9,9 @@ public class Base64Encoder {
   private static final String BASE64_TABLE = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
   public static String encode(String input) {
+    /*
     byte[] bytes = input.getBytes(); // Step 1: String -> ASCII Bytes
+
     // String = "ABC"
     // Length = 3
     // Character ASCII Value Binary (8-bit)
@@ -27,22 +29,51 @@ public class Base64Encoder {
 
     int fullLen = bytes.length + paddingCnt;
     byte[] padded = new byte[fullLen];
-
+    
     // System.arraycopy(bytes, 0, padded, 0, bytes.length);
     for (int i = 0; i < bytes.length; i++) {
       padded[i] = bytes[i];
     }
+    */
+      
+    int paddingCnt = (3 - (input.length() % 3)) % 3;
+    int fullLen = input.length() + paddingCnt;
+    StringBuilder res = new StringBuilder();
 
-    for (int i = 0; i < padded.length; i += 3) {
-      int combined = ((padded[i] & 255) << 16) | ((padded[i + 1] & 255) << 8) | ((padded[i + 2] & 255)); // 0xFF = 255 in bits
 
-      // this is combined binary int
+    /*
+      for (int i = 0; i < padded.length; i += 3) {
+        int combined = ((padded[i] & 255) << 16) | ((padded[i + 1] & 255) << 8) | ((padded[i + 2] & 255)); // 0xFF = 255 in bits
 
-      res.append(BASE64_TABLE.charAt((combined >> 18) & 63)); // 0X3F = 63
+        // this is combined binary int
+
+        res.append(BASE64_TABLE.charAt((combined >> 18) & 63)); // 0X3F = 63
+        res.append(BASE64_TABLE.charAt((combined >> 12) & 63));
+        res.append(BASE64_TABLE.charAt((combined >> 6) & 63));
+        res.append(BASE64_TABLE.charAt(combined & 63));
+
+      }
+
+      if (paddingCnt > 0) { // That removes the last paddingCnt characters ("A") from res
+        res.setLength(res.length() - paddingCnt);
+        for (int i = 0; i < paddingCnt; i++) { // append paddingCnt times "="
+          res.append('=');
+        }
+      }
+    */
+
+    for(int i = 0; i < fullLen; i+=3) {
+      int c1 = input.charAt(i) & 0xFF; // always safe
+
+      int c2 = (i + 1 < input.length()) ? (input.charAt(i + 1) & 0xFF) : 0;
+      int c3 = (i + 2 < input.length()) ? (input.charAt(i + 2) & 0xFF) : 0;
+
+      int combined = (c1 << 16) | (c2 << 8) | c3;
+
+      res.append(BASE64_TABLE.charAt((combined >> 18) & 63));
       res.append(BASE64_TABLE.charAt((combined >> 12) & 63));
       res.append(BASE64_TABLE.charAt((combined >> 6) & 63));
       res.append(BASE64_TABLE.charAt(combined & 63));
-
     }
 
     if (paddingCnt > 0) { // That removes the last paddingCnt characters ("A") from res
@@ -55,51 +86,78 @@ public class Base64Encoder {
   }
 
   private static int getValue(char c) {
-    if (c == '=')
+    if (c == '='){
       return 0;
+    }
     return BASE64_TABLE.indexOf(c);
   }
 
   private static String decode(String base64) {
     // Remove padding count
-    int padding = 0;
-    if (base64.endsWith("=="))
-      padding = 2;
-    else if (base64.endsWith("="))
-      padding = 1;
+    // int padding = 0;
+    // if (base64.endsWith("==")) {
+    //   padding = 2;
+    // }
+    // else if (base64.endsWith("=")) {
+    //   padding = 1;
+    // }
 
     int length = base64.length();// Work on only real characters
-    int groups = length / 4;
+    // int groups = length / 4;
 
-    byte[] bytes = new byte[groups * 3 - padding]; // groups * 3 - padding size of original string
-    int byteIndex = 0;
+    // byte[] bytes = new byte[groups * 3 - padding]; // groups * 3 - padding size of original string
+    // int byteIndex = 0;
+    StringBuilder res = new StringBuilder();
 
+    for(int i = 0; i < length; i+=4) {
+      int c1 = getValue(base64.charAt(i));
+      int c2 = getValue(base64.charAt(i + 1));
+      int c3 = getValue(base64.charAt(i + 2));
+      int c4 = getValue(base64.charAt(i + 3));
+
+      int val = (c1 << 18) | (c2 << 12) | (c3 << 6) | (c4);
+
+      res.append((char) ((val >> 16) & 255));
+
+      // Append second character only if not padding
+      if (base64.charAt(i + 2) != '=') {
+        res.append((char) ((val >> 8) & 0xFF));
+      }
+
+      // Append third character only if not padding
+      if (base64.charAt(i + 3) != '=') {
+        res.append((char) (val & 0xFF));
+      }
+    }
+    return res.toString();
+
+    /*
     for (int i = 0; i < length; i += 4) {
 
-      /*
-       * first 6 bits → bits 23..18 (<<18)
-       * second → bits 17..12 (<<12)
-       * third → bits 11..6 (<<6)
-       * fourth → bits 5..0 (no shift)
-       */
+      
+      // first 6 bits → bits 23..18 (<<18)
+      // second → bits 17..12 (<<12)
+      // third → bits 11..6 (<<6)
+      // fourth → bits 5..0 (no shift)
+       
 
       int val = ((getValue(base64.charAt(i)) << 18) | (getValue(base64.charAt(i + 1)) << 12) |
           (getValue(base64.charAt(i + 2)) << 6) | (getValue(base64.charAt(i + 3))));
 
-      /*
-       * Example "QUJD" (Q=16, U=20, J=9, D=3):
-       * 
-       * val = (16<<18) | (20<<12) | (9<<6) | 3
-       * 
-       * 16<<18 = 4,194,304
-       * 20<<12 = 81,920
-       * 9<<6 = 576
-       * 3 = 3
-       * 
-       * val = 4,194,304 + 81,920 + 576 + 3 = 4,276,803
-       * Binary (24 bits): 01000001 01000010 01000011 → which is bytes [65,66,67].
-       * 
-       */
+    
+      // Example "QUJD" (Q=16, U=20, J=9, D=3):
+      
+      // val = (16<<18) | (20<<12) | (9<<6) | 3
+      
+      // 16<<18 = 4,194,304
+      // 20<<12 = 81,920
+      // 9<<6 = 576
+      // 3 = 3
+      
+      // val = 4,194,304 + 81,920 + 576 + 3 = 4,276,803
+      // Binary (24 bits): 01000001 01000010 01000011 → which is bytes [65,66,67].
+      
+      
 
       bytes[byteIndex++] = (byte) ((val >> 16) & 255); // first byte
 
@@ -111,6 +169,7 @@ public class Base64Encoder {
       }
     }
     return new String(bytes);
+    */
   }
 
   public static void main(String[] args) {
