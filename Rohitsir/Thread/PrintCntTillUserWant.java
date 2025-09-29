@@ -83,15 +83,14 @@ public class PrintCntTillUserWant {
                     System.out.println("[CounterThread] Printing count: " + cnt);
                     cnt++;
                 }
-	    
-                
+
                 try {
                     Thread.sleep(1000);// wait for one second
                 } catch (InterruptedException e) {
                     System.out.println("Error: " + e);
                 }
 
-	    }
+            }
         });
 
         counterThread.start();

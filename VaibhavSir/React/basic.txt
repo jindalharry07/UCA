@@ -66,8 +66,26 @@ https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_ele
 - Not a good practice to modify argument but we can modify
 
 
-Use State 
-used to change the value in dom
-returns the array
+Hooks->> These are the methods or function provided by react in order to do something custom while the component is re rendering, unmounting etc, or even to trigger a render, to manage where
+to manage when the component is flushed out of the dom
 
-ract dev tools download
+Hooks let you control:
+- When something happens (e.g., after render, before unmount)
+- How your component manages and updates state
+- Where to run certain code related to the component lifecycle, without using class-based lifecycle methods.
+
+1. Use State 
+used to change the value in dom react cause re-render 
+returns the array
+-> In js if we render dynamic then all the tag will re render but in react only the value is re render
+
+react dev tools download
+
+
+2. Use Effect
+takes 2 arguments 1 -> what to do 2-> when to do
+when to do ->{
+  - empty array -[] - do it only once when the component is mounted
+  - no array - do it everytime the componemt is rendered
+  - array with variable - [var1, var2] - do it only when any of these variables changes
+}

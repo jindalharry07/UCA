@@ -78,7 +78,8 @@ function CustomButton(props) {
         border: "2px solid black",
         fontWeight: 500,
       }}
-      onClick={props.updateLikes}
+      // onClick={props.updateLikes}
+      onClick={props.clickBhehavior}
     >
       {props.label} 
       {/* WHAT WE WILL PASS AS LABEL THAT WILL BE DISPLAY  to make the button dynamic*/}
@@ -86,12 +87,59 @@ function CustomButton(props) {
   );
 }
 
+function Likes2Component(props) {
+  const [liked, setLiked] = React.useState("no");
+
+  // No array
+  React.useEffect(()=>{
+    // called on every re- render
+  })
+
+  // empty array -- correct
+  React.useEffect(()=>{
+    // fetch the backend data
+    // return () => {}; //cleanup fun
+  }, [])
+  /* 2 nd way */
+  function fetchData() {
+    // code to fetch the data
+  }
+  fetchData(); // this will fetch data on every call
+
+  // array with dependencies
+  React.useEffect(()=>{
+    // send liked data to backend
+  }, [liked])
+
+  const updateLikes = () => {
+    if (liked === "no") {
+      setLiked("yes");
+    } else {
+      setLiked("no");
+    }
+  };
+
+  const getLabel=()=>{
+    return liked === "no" ? "Like" : "Dislike"
+  }
+
+  return(
+    <>
+      <br/><br/>
+      <section>This is my first section</section>
+      <p>Likes - {liked}</p>
+      <CustomButton label={liked === "no" ? "Like" : "Dislike"} clickBhehavior={updateLikes}/>
+    </>
+  )
+}
+
 function App() {
   return (
     <>
       <DescriptionComponent name={"Harry"}></DescriptionComponent>
 
-      <LikesComponent/>
+      {/* <LikesComponent/> */}
+      {/* <Likes2Component/> */}
     </>
   )
 }
