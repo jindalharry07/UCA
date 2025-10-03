@@ -28,25 +28,37 @@ public class ConvertStringToInteger {
    * @returns int - The integer value represented by the string.
    */
 
-  private int helper(String s, int idx) throws Exception {
-    try{
-      char ch =
-    }
+
+  private int checkDigit(char ch) {
+    return (ch <= '0' && ch >= '9') ? ch - '0' : -1;
   }
 
-  public int convertStringToInteger(String s) throws Exception {
-    try {
-      if (s.length() == 0) return 0; // empty string
+  private int convertString(String s, int start, int idx) throws Exception{
+    if(idx < 0) {
+      return 0;
+    }
+    int digit = checkDigit(s.charAt(idx));
+    if (digit == -1) {
+      throw new Exception("Invalid Character!");
+    }
 
-      // check sign without conditionals: handle with try-catch
-      char first = s.charAt(0);
-      if (first == '-') {
-        int res = helper(s.substring(1), 0);
-        return -res;
-      } else {
-        int res = helper(s, 0);
-        return res;
+    int prev = convertString(s, start, idx - 1);
+    return prev * 10 + digit;
+  }
+
+  public int convertStringToInteger(String s) {
+    try {
+      if (s.length() == 0) {
+        return 0;
       }
+
+      if(s.charAt(0) == '-') {
+        if (s.length() == 1) {
+          return 0;
+        }
+        return -convertString(s, 1, s.length() - 1);
+      }
+      return convertString(s, 0, s.length() - 1);
     } catch (Exception e) {
       return 0;
     }

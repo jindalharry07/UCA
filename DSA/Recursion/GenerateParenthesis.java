@@ -55,6 +55,6 @@ public class GenerateParenthesis {
     List<String> expected = Arrays.asList("((()))", "(()())", "(())()", "()(())", "()()()");
 
 
-    // assert result.size() == expected.size() && result.containsAll(expected) : "Test case failed";
+    assert result.size() == expected.size() && result.containsAll(expected) : "Test case failed";
   }
 }
