@@ -66,6 +66,9 @@ https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_ele
 - Not a good practice to modify argument but we can modify
 
 
+RE RENDER 
+when fun is rerender the variables are made again and agaian in function insides it calss again and agaianto prevent this we uses hooks
+
 Hooks->> These are the methods or function provided by react in order to do something custom while the component is re rendering, unmounting etc, or even to trigger a render, to manage where
 to manage when the component is flushed out of the dom
 
@@ -73,6 +76,12 @@ Hooks let you control:
 - When something happens (e.g., after render, before unmount)
 - How your component manages and updates state
 - Where to run certain code related to the component lifecycle, without using class-based lifecycle methods.
+
+Component is updated/ re-renderes in 3 cases
+1. Props Change
+2. state change    
+3. Parent component re-renders
+
 
 1. Use State 
 used to change the value in dom react cause re-render 
@@ -89,3 +98,26 @@ when to do ->{
   - no array - do it everytime the componemt is rendered
   - array with variable - [var1, var2] - do it only when any of these variables changes
 }
+
+⚖ Main Difference Table
+Feature	useState	                              useEffect
+Purpose	To store and update local state	       To perform side effects (API calls, DOM updates, etc.)
+When it runs	During rendering	               After rendering (and on dependency changes)
+Input	Initial state value	                     A function (effect callback) + dependency array
+Output	State variable + setter function	     Runs a side effect function
+Example use	Counter, form inputs	             API calls, subscriptions, timers
+
+
+
+3. useRef — What It Is & Why It's Useful
+useRef() is a React hook that returns a mutable object with a .current property.
+const myRef = React.useRef(initialValue);
+
+eg- const tempvariable = React.useRef(10); // doesn't re made in rerender
+
+🧠 Key Features of useRef:
+Feature	Description
+✅ Mutable	You can change .current without causing a re-render
+✅ Persistent	The .current value persists across renders
+❌ No re-render	Changing .current does not trigger a re-render
+✅ DOM access	Can be used to reference actual DOM elements

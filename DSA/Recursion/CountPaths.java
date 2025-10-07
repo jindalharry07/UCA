@@ -35,19 +35,19 @@ public class CountPaths {
    * @param y - Starting column position.
    * @returns int - Number of unique paths from (x, y) to (0, 0).
    */
+  private int countPossiblePaths(int m, int n, int x, int y) {
+    if(x == 0 && y == 0) return 1;
+    if(x < 0 || x > m || y < 0 || y > n) return 0;
+    int count = 0;
+    count += countPossiblePaths(m, n, x - 1, y) ;// up;
+    count += countPossiblePaths(m, n, x , y - 1) ;// left;
+  
+    return count;
+
+  }
   public int countPaths(int m, int n, int x, int y) {
-    if (x== 0 && y == 0) {
-      return 0;
-    }
-
-    if(x == 0) {
-      return 1;
-    }
-    if(y== 0) {
-      return 1;
-    }
-
-    return countPaths(m, n, x - 1, y) + countPaths(m, n, x, y-1);
+    if(x == 0 && y == 0) return 0;
+    return countPossiblePaths(m, n, x, y);
   }
 
   /**
