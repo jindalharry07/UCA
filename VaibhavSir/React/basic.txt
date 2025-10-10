@@ -121,3 +121,9 @@ Feature	Description
 ✅ Persistent	The .current value persists across renders
 ❌ No re-render	Changing .current does not trigger a re-render
 ✅ DOM access	Can be used to reference actual DOM elements
+
+
+
+
+npx create-next-app@latest //download 
+npm cmds can set in package.json in scrips 

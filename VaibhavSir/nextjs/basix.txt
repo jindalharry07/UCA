@@ -1,0 +1,29 @@
+npx create-next-app@latest   works with react used for server side rendering
+
+node js run on windows/ mac/ interact directly with os . it is build on nextjs
+NEXT JS compliteit(execute the js create the dom and there serve it to frontend)
+frontend framework
+
+what is server side rendering ?
+Server-Side Rendering (SSR) is a technique used in web development where a web page is rendered on the server instead of the browser.
+
+When a user visits a website:
+
+Without SSR (Client-Side Rendering / CSR) — The browser first downloads a blank HTML page and JavaScript files. Then, JavaScript runs in the browser to build (render) the content dynamically.
+
+With SSR — The server prepares the complete HTML page (with all the content already rendered) and sends it to the browser. The browser then just displays it.
+
+// rendering techniques
+CSR -> Client side rendering
+SSR -> server side rendering
+SSG -> static side generation
+ISR -> Incremental static regeneration
+
+most common use case is hybrid approach which is combination of all the above  hybrid - combination of all the above
+ -> some of CSR
+ -> some of SSR
+ -> some of SSG
+ -> some part of single page or application
+
+// next js tries to render every component server side
+ "use client" there is a way to tell next js that use that component on client
