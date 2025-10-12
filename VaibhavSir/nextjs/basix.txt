@@ -26,4 +26,22 @@ most common use case is hybrid approach which is combination of all the above  h
  -> some part of single page or application
 
 // next js tries to render every component server side
- "use client" there is a way to tell next js that use that component on client
+"use client" there is a way to tell next js that use that component on client
+
+
+Pm2 
+
+layout.js file is entry point of next project
+
+which component is made in page.js in run time auto goes in layout.js gives as children
+
+React is single page application 
+do do this ->
+import Link from 'next/link';
+<Link href="/login">Go to login</Link>
+this is tag of next.js
+does pre fetching
+
+RSC react server side component
+
+

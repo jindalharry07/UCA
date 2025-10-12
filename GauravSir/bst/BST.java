@@ -63,6 +63,21 @@ public class BST<Key extends Comparable<Key>, Value> {
     return minNode.key;
   }
 
+  private Node delMin(Node node) {
+    if (node.left == null) {
+      return node.right;
+    }
+    node.left = delMin(node.left);
+    return node;
+  }
+
+  public void delMin() {
+    if (root == null) {
+      return;
+    }
+    root = delMin(root);
+  }
+
   private Node getMax(Node node) {
     if (node.right == null) {
       return node;
@@ -73,6 +88,53 @@ public class BST<Key extends Comparable<Key>, Value> {
   public Key max() {
     Node maxNode = getMax(root);
     return maxNode.key;
+  }
+
+  private Node delMax(Node node) {
+    if (node.right == null) {
+      return node.left;
+    }
+    node.right = delMax(node.right);
+    return node;
+  }
+
+  public void delMax() {
+    if (root == null) {
+      return;
+    }
+    root = delMax(root);
+  }
+
+  private Node delete(Node node, Key key) {
+    if (node == null) {
+      return null;
+    }
+
+    int cmp = key.compareTo(node.key);
+    if (cmp < 0) {
+      node.left = delete(node.left, key);
+    } else if (cmp > 0) {
+      node.right = delete(node.right, key);
+    } else {
+      if (node.left == null) {
+        return node.right;
+      }
+      if (node.right == null) {
+        return node.left;
+      }
+
+      Node temp = getMin(node.right);
+
+      node.key = temp.key;
+      node.value = temp.value;
+
+      node.right = delMin(node.right);
+    }
+    return node;
+  }
+
+  public void delete(Key key) {
+    root = delete(root, key);
   }
 
   private Node floor(Node node, Key key) {
@@ -160,6 +222,43 @@ public class BST<Key extends Comparable<Key>, Value> {
     assert bst.ceil(2) == 3 : "Ceil of 2 should be 3";
     assert bst.ceil(7) == 7 : "Ceil of 7 should be 7";
     assert bst.ceil(8) == null : "Ceil of 8 should be null";
+
+    bst.delMin(); // removes key 1
+    assert bst.min() == 3 : "After delMin, min should be 3";
+    assert bst.get(1) == null : "Key 1 should be deleted";
+
+    bst.delMin(); // removes key 3
+    assert bst.min() == 4 : "After second delMin, min should be 4";
+    assert bst.get(3) == null : "Key 3 should be deleted";
+
+    // Test delMax repeatedly
+    bst.delMax(); // removes key 7
+    assert bst.max() == 5 : "After delMax, max should be 5";
+    assert bst.get(7) == null : "Key 7 should be deleted";
+
+    // Test delete arbitrary key (leaf node)
+    bst.put(10, "L");
+    bst.delete(10);
+    assert bst.get(10) == null : "Key 10 should be deleted";
+
+    // Test delete node with one child
+    bst.put(6, "M");
+    bst.delete(7); // 7 was deleted already, so no effect
+    bst.delete(6);
+    assert bst.get(6) == null : "Key 6 should be deleted";
+
+    // Test delete node with two children
+    bst.put(2, "N");
+    bst.put(3, "O");
+    bst.delete(4); // 4 has two children: 2 and 5 subtree after previous deletions
+    assert bst.get(4) == null : "Key 4 should be deleted";
+
+    // Check that BST still returns correct min and max
+    assert bst.min() == 2 : "Min should now be 2";
+    assert bst.max() == 5 : "Max should still be 5";
+
+    bst.delMin();
+    assert bst.min() == 3 : "Min should now be 3";
 
     System.out.println("All tests passed!");
 
