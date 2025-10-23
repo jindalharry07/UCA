@@ -112,14 +112,15 @@ public class SearchInRotatedSortedArray {
 
     while(low <= high) {
       int mid = low + (high - low) / 2;
+
+      if(nums[mid] == target) {
+        return mid;
+      }
+
       if(nums[low] == nums[mid] && nums[mid] == nums[high]) {
         low++;
         high--;
         continue;
-      }
-
-      if(nums[mid] == target) {
-        return mid;
       }
 
       if(nums[low] <= nums[mid]) {

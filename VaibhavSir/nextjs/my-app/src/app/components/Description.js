@@ -1,7 +1,7 @@
 "use client";
 import { useEffect } from "react";
 
-export function DesciptionComponent(props) {
+export function DescriptionComponent(props) {
   useEffect(() => {
     console.log("Component Mountes");
   }, []);

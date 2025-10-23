@@ -45,3 +45,8 @@ does pre fetching
 RSC react server side component
 
 
+npm run build 
+- build the app in production mode
+npm run start
+
+cant run localstorage features because next is server side it is client side (localstorage is browser feacture) // can use "use client" and useEffect shouble be used

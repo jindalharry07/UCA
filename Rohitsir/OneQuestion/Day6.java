@@ -105,14 +105,14 @@ import java.util.*;
 
 public class Day6 {
   static class RandomizedSet {
-    private HashSet<Integer> set;
+    //private HashSet<Integer> set;
 
     private List<Integer> values;
     private Random ran;
     private HashMap<Integer, Integer> valueIdx;
 
     public RandomizedSet() {
-      set = new HashSet<>();
+      //set = new HashSet<>();
       ran = new Random();
 
       values = new ArrayList<>();
@@ -209,44 +209,44 @@ public class Day6 {
 
   public static void main(String[] args) {
     // Ques 1
-    /*
-     * RandomizedSet st1 = new RandomizedSet();
-     * st1.insert(0);
-     * st1.insert(2);
-     * st1.insert(2);
-     * st1.insert(1);
-     * st1.insert(5);
-     * 
-     * System.out.println(st1.getRandom());
-     * st1.remove(2);
-     * st1.remove(3);
-     * System.out.println(st1.getRandom());
-     */
+    
+    RandomizedSet st1 = new RandomizedSet();
+    st1.insert(0);
+    st1.insert(2);
+    st1.insert(2);
+    st1.insert(1);
+    st1.insert(5);
+    
+    System.out.println(st1.getRandom());
+    st1.remove(2);
+    st1.remove(3);
+    System.out.println(st1.getRandom());
+     
 
     // Ques 2
-    // int[] nums1 = {1, 3, 5, 0, 0, 0}; // m = 3
-    // int[] nums2 = {2, 4, 6}; // n = 3
+    int[] nums1 = {1, 3, 5, 0, 0, 0}; // m = 3
+    int[] nums2 = {2, 4, 6}; // n = 3
 
-    // merge(nums1, 3, nums2, 3);
+    merge(nums1, 3, nums2, 3);
 
-    // System.out.println("Merged Array: " + Arrays.toString(nums1));
+    System.out.println("Merged Array: " + Arrays.toString(nums1));
 
     // Ques 3
     System.out.println(canIWin(10, 0));
     System.out.println(canIWin(10, 1));
 
     // Ques 4
-    int[] nums1 = { 2, 2, 3, 4 };
-    System.out.println("Test 1 Result: " + triangleNumber(nums1));
+    int[] nums3 = { 2, 2, 3, 4 };
+    System.out.println("Test 1 Result: " + triangleNumber(nums3));
 
-    int[] nums2 = { 4, 2, 3, 4 };
-    System.out.println("Test 2 Result: " + triangleNumber(nums2));
+    int[] nums4 = { 4, 2, 3, 4 };
+    System.out.println("Test 2 Result: " + triangleNumber(nums4));
 
-    int[] nums3 = { 1, 1, 1, 1 };
-    System.out.println("Test 3 Result: " + triangleNumber(nums3)); 
+    int[] nums5 = { 1, 1, 1, 1 };
+    System.out.println("Test 3 Result: " + triangleNumber(nums5)); 
 
-    int[] nums4 = { 2, 2, 10 };
-    System.out.println("Test 4 Result: " + triangleNumber(nums4));
+    int[] nums6 = { 2, 2, 10 };
+    System.out.println("Test 4 Result: " + triangleNumber(nums6));
   }
 
 }

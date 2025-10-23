@@ -14,8 +14,6 @@
 // The substring "BBBB" has the longest repeating letters, which is 4.
 // There may exists other ways to achieve this answer too.
 
-import java.util.*;
-
 public class Day5 {
   public static int characterReplacement(String s, int k) {
     // HashMap<Character, Integer> mpp = new HashMap<>();

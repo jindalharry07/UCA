@@ -190,24 +190,48 @@ public class BST<Key extends Comparable<Key>, Value> {
   }
 
   // how many smaller than eqaul to this key
+  private int size(Node node) {
+    if (node == null) {
+      return 0;
+    }
+    return 1 + size(node.left) + size(node.right);
+  }
+
+  private int rank(Node node, Key key) {
+    if (node == null) {
+      return 0;
+    }
+    int cmp = key.compareTo(node.key);
+    if (cmp < 0) {
+      return rank(node.left, key);
+    } else if (cmp > 0) {
+      return 1 + size(node.left) + rank(node.right, key);
+    } else {
+      return size(node.left) + 1;
+    }
+  }
+
+  public int rank(Key key) {
+    return rank(root, key);
+  }
 
   public static void main(String[] args) {
-    BST<Integer, String> bst = new BST<Integer, String>();
+    BST<Integer, String> bst = new BST<>();
     bst.put(5, "A");
     bst.put(1, "X");
     bst.put(3, "Y");
     bst.put(4, "Z");
     bst.put(7, "A");
 
-    assert bst.get(4) == "Z";
-    assert bst.get(5) == "A";
-
+    // Test get()
     assert "Z".equals(bst.get(4)) : "Expected value Z for key 4";
     assert "A".equals(bst.get(5)) : "Expected value A for key 5";
 
+    // Test updating value
     bst.put(5, "B");
     assert "B".equals(bst.get(5)) : "Expected updated value B for key 5";
 
+    // Test min and max
     assert bst.min() == 1 : "Min key should be 1";
     assert bst.max() == 7 : "Max key should be 7";
 
@@ -223,6 +247,18 @@ public class BST<Key extends Comparable<Key>, Value> {
     assert bst.ceil(7) == 7 : "Ceil of 7 should be 7";
     assert bst.ceil(8) == null : "Ceil of 8 should be null";
 
+    // Test rank()
+    assert bst.rank(0) == 0 : "Rank of 0 should be 0";
+    assert bst.rank(1) == 1 : "Rank of 1 should be 1";
+    assert bst.rank(2) == 1 : "Rank of 2 should be 1";
+    assert bst.rank(3) == 2 : "Rank of 3 should be 2";
+    assert bst.rank(4) == 3 : "Rank of 4 should be 3";
+    assert bst.rank(5) == 4 : "Rank of 5 should be 4";
+    assert bst.rank(6) == 4 : "Rank of 6 should be 4";
+    assert bst.rank(7) == 5 : "Rank of 7 should be 5";
+    assert bst.rank(8) == 5 : "Rank of 8 should be 5";
+
+    // Test delMin()
     bst.delMin(); // removes key 1
     assert bst.min() == 3 : "After delMin, min should be 3";
     assert bst.get(1) == null : "Key 1 should be deleted";
@@ -231,7 +267,7 @@ public class BST<Key extends Comparable<Key>, Value> {
     assert bst.min() == 4 : "After second delMin, min should be 4";
     assert bst.get(3) == null : "Key 3 should be deleted";
 
-    // Test delMax repeatedly
+    // Test delMax()
     bst.delMax(); // removes key 7
     assert bst.max() == 5 : "After delMax, max should be 5";
     assert bst.get(7) == null : "Key 7 should be deleted";
@@ -261,6 +297,5 @@ public class BST<Key extends Comparable<Key>, Value> {
     assert bst.min() == 3 : "Min should now be 3";
 
     System.out.println("All tests passed!");
-
   }
 }

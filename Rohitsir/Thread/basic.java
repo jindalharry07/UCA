@@ -14,7 +14,5 @@ public class basic{
         t1.run();
         
         System.out.println(Thread.currentThread().getName());
-
-
     }
 }

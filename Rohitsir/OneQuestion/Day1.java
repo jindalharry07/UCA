@@ -2,9 +2,9 @@ import java.util.*;
 
 public class Day1 {
     static class Pair {
-        int ele, min,max;
+        int ele, min, max;
 
-        Pair(int e, int mi,int ma) {
+        Pair(int e, int mi, int ma) {
             ele = e;
             min = mi;
             max = ma;
@@ -12,24 +12,24 @@ public class Day1 {
     }
 
     static class MinMaxStack {
-        Stack<Pair>st;
-        MinMaxStack(){
-            st=new Stack<>();
+        Stack<Pair> st;
+
+        MinMaxStack() {
+            st = new Stack<>();
         }
 
         public void push(int val) {
-            if(st.isEmpty()){
-                st.push(new Pair(val,val,val));
-            }else{
-                int currmin=(val<st.peek().min)?val:st.peek().min;
-                int currmax=(val>st.peek().max)?val:st.peek().max;
-                st.push(new Pair(val,currmin,currmax));
+            if (st.isEmpty()) {
+                st.push(new Pair(val, val, val));
+            } else {
+                int currmin = (val < st.peek().min) ? val : st.peek().min;
+                int currmax = (val > st.peek().max) ? val : st.peek().max;
+                st.push(new Pair(val, currmin, currmax));
             }
         }
 
         public int pop() {
-
-            int val=st.peek().ele;
+            int val = st.peek().ele;
             st.pop();
             return val;
         }
@@ -48,7 +48,7 @@ public class Day1 {
     }
 
     public static void main(String[] args) {
-        MinMaxStack s1=new MinMaxStack();
+        MinMaxStack s1 = new MinMaxStack();
         s1.push(6);
         s1.push(-1);
         s1.push(5);
