@@ -50,3 +50,9 @@ npm run build
 npm run start
 
 cant run localstorage features because next is server side it is client side (localstorage is browser feacture) // can use "use client" and useEffect shouble be used
+
+
+"@/*": ["./src/*"]
+this means that when i write any import statement and then it will automatic search in src folder
+
+default export vs named export

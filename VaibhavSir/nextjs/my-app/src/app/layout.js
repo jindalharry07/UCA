@@ -1,6 +1,7 @@
 // import { Geist, Geist_Mono } from "next/font/google";
 // import "./globals.css";
 
+import "@/app/global.css"
 const { Children } = require("react");
 
 // const geistSans = Geist({
@@ -30,11 +31,14 @@ const { Children } = require("react");
 //   );
 // }
 
+import Header from "./components/Header";
 
 function Layout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Header/>
+        {children}</body>
     </html>
   );
 }
