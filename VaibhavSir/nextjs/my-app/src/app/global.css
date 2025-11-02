@@ -1,9 +1,10 @@
+@import "tailwindcss";
 body {
   padding: 10px 20px;
 }
 
 p {
-  color: aqua;
+  color: rgb(255, 8, 0);
 }
 
 a {

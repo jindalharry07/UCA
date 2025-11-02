@@ -12,14 +12,14 @@ function Header() {
         alignItems: "center",
       }}
     >
-      <Link href="/">
+      {/* Logo / Home Link */}
+      <Link href="/" style={{ textDecoration: "none", color: "inherit" }}>
         <h1>E-Com</h1>
       </Link>
 
+      {/* Login Button Link */}
       <Link href="/login">
-        <a>
-          <button style={{ height: "30px" }}>Login</button>
-        </a>
+        <button style={{ height: "30px" }}>Login</button>
       </Link>
     </header>
   );

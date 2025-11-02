@@ -1,5 +1,6 @@
 "use client";
 import React from 'react';
+import styles from "./login.module.css"
 
 export default function Login() {
   const formStyle = {
@@ -23,7 +24,7 @@ export default function Login() {
 
   const buttonStyle = {
     padding: '10px',
-    backgroundColor: '#007BFF',
+    backgroundColor: '#d44a13ff',
     color: 'white',
     fontSize: '16px',
     border: 'none',
@@ -48,7 +49,7 @@ export default function Login() {
   return (
     <>
       <h1 style={{ textAlign: 'center' }}>Login</h1>
-      <form style={formStyle} onSubmit={loginHandler}>
+      <form className={styles.form} onSubmit={loginHandler}>
         <input type="email" placeholder="Email" style={inputStyle} required />
         <input type="password" placeholder="Password" style={inputStyle} required />
         {/* <button type="submit" style={buttonStyle} onClick={loginHandler}>Login</button> */}

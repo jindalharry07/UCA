@@ -1,4 +1,5 @@
 npx create-next-app@latest   works with react used for server side rendering
+next js uses file based routing
 
 node js run on windows/ mac/ interact directly with os . it is build on nextjs
 NEXT JS compliteit(execute the js create the dom and there serve it to frontend)
@@ -26,7 +27,7 @@ most common use case is hybrid approach which is combination of all the above  h
  -> some part of single page or application
 
 // next js tries to render every component server side
-"use client" there is a way to tell next js that use that component on client
+"use client" there is a way to tell next js that use that component on client side rendering
 
 
 Pm2 
@@ -34,6 +35,7 @@ Pm2
 layout.js file is entry point of next project
 
 which component is made in page.js in run time auto goes in layout.js gives as children
+esme vo components hote h jo hr page m show hotte h
 
 React is single page application 
 do do this ->
@@ -49,10 +51,12 @@ npm run build
 - build the app in production mode
 npm run start
 
-cant run localstorage features because next is server side it is client side (localstorage is browser feacture) // can use "use client" and useEffect shouble be used
+can't run localstorage features because next is server side it is client side (localstorage is browser feacture) // can use "use client" and useEffect shouble be used
 
 
 "@/*": ["./src/*"]
 this means that when i write any import statement and then it will automatic search in src folder
 
 default export vs named export
+
+suspense - jab tak site load nhi hote tb kya dikhna h!
