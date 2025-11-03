@@ -15,6 +15,16 @@ public class ConnectedComponents {
     }
   }
 
+  private void dfs(Graph g, int v) {
+    marked[v] = true;
+    id[v] = count;
+    for(int w : g.adj(v)) {
+      if(!marked[w]) {
+        dfs(g, w);
+      }
+    }
+  }
+  
   public boolean connected(int v, int w) {
     return this.id[v] == this.id[w];
   }
@@ -25,15 +35,6 @@ public class ConnectedComponents {
 
   public int id(int v) {
     return this.id[v];
-  }
-  private void dfs(Graph g, int v) {
-    marked[v] = true;
-    id[v] = count;
-    for(int w : g.adj(v)) {
-      if(!marked[w]) {
-        dfs(g, w);
-      }
-    }
   }
 
   public static void main(String[] args) {
