@@ -60,3 +60,20 @@ this means that when i write any import statement and then it will automatic sea
 default export vs named export
 
 suspense - jab tak site load nhi hote tb kya dikhna h!
+
+
+-client side rendering
+-server side rendering
+ -- pre rendering - server renders the page (before)
+ steps npm run build circle - (static )  prerendered as static content, f -> (dynamic)server rendered on demand
+    It simulate api call behavior with a delay
+  -- if i have writen settimeout it will take time to build 
+
+export const revalidate = 0;
+this command allows settimeout in rendering on every reload
+
+agr koi or number likha 0 ke jagah toh eg (10 toh 10 reload ke baad rerender kre ga)
+its called cache revalidation
+-- if noboday refresh then it will do nothing for 1 year 
+
+-- on demand server - side rendering  -> never a stale page visible to user

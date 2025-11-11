@@ -58,7 +58,7 @@ public class EulerUndirected {
       System.out.println("This graph has an Euler path (but not a circuit)!");
     } else {
       System.out.println("This graph has no Euler path or circuit!");
-    }
+    }o
   }
 
   public static void main(String[] args) {

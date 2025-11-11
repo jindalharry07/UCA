@@ -5,8 +5,10 @@ import Products from "./components/Products.js"
 import { products } from "./components/productsData";
 import { resolve } from 'styled-jsx/css';
 
-
+export const revalidate = 0;
 export default async function Home() {
+
+  // Simulate API call behavior with a delay
   function sleep(sleepTime) {
     return new Promise((resolve) => setTimeout(resolve, sleepTime));
   }
