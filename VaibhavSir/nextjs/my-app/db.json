@@ -1,0 +1,14 @@
+{
+  "posts": [
+    { "id": 1, "title": "Hello World", "content": "First post!" },
+    { "id": 2, "title": "Another Post", "content": "More content..." }
+  ],
+  "users": [
+    { "id": 1, "name": "Alice", "email": "alice@example.com" },
+    { "id": 2, "name": "Bob", "email": "bob@example.com" }
+  ],
+  "comments": [
+    { "id": 1, "postId": 1, "text": "Nice post!" },
+    { "id": 2, "postId": 2, "text": "I agree!" }
+  ]
+}

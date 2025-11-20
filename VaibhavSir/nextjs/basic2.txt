@@ -1,0 +1,38 @@
+json-server
+
+json-server --port 4000
+
+we have actual api for the product or any thing (json-server)
+
+
+
+http protocal
+defines common set of rules with which two platform (hardware/software) can interact and share data
+
+//url: http://localhost:4000/products -DNS (wqbc.com  - ip linked to it --> this mapping is defined on DNS)
+- capablities of a server
+- features of a server
+- security contraints
+
+// Request Method/ type of requests: Mapped to CRUD operation
+- GET - Read
+- PUT - Update
+- POST - Create
+- DELETE - Delete
+
+- OPTIONS doesnt do any crud operation.its a pre- request for any crud operation request.
+
+- PATCH
+
+// Headers : Meta data about a request
+Additional details about the request
+
+
+Nodejs - API development
+- Nodejs alone
+- Itroduce Express json
+
+Response 
+- Status Code
+  - success - 200, 201, 202, 204 (2xx)
+  - failure

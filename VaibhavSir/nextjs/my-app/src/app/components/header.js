@@ -1,27 +1,28 @@
 import Link from "next/link";
+import Button from "./button";
 
 function Header() {
   return (
-    <header
+    <div
       style={{
         backgroundColor: "grey",
-        padding: "2px 20px",
-        margin: "0 -20px",
+        padding: "1px 20px",
+        margin: "0px -20px",
         display: "flex",
         justifyContent: "space-between",
-        alignItems: "center",
       }}
     >
-      {/* Logo / Home Link */}
-      <Link href="/" style={{ textDecoration: "none", color: "inherit" }}>
+      <Link href="/">
         <h1>E-Com</h1>
       </Link>
-
-      {/* Login Button Link */}
-      <Link href="/login">
-        <button style={{ height: "30px" }}>Login</button>
-      </Link>
-    </header>
+      <div style={{margin: "5px"}}>
+        <Button variant="primary">
+          <Link href="/login">
+            <h2>Login</h2>
+          </Link>
+        </Button>
+      </div>
+    </div>
   );
 }
 

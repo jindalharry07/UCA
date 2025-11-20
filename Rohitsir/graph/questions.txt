@@ -1,0 +1,3 @@
+https://leetcode.com/problems/parallel-courses/description/
+https://leetcode.com/problems/parallel-courses-ii/description/
+https://leetcode.com/problems/parallel-courses-iii/description/

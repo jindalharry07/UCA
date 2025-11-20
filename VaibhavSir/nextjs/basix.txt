@@ -77,3 +77,9 @@ its called cache revalidation
 -- if noboday refresh then it will do nothing for 1 year 
 
 -- on demand server - side rendering  -> never a stale page visible to user
+
+
+Cumitative layout shift
+- it is when all the pages is not loaded and suddendly buttons go down after loading
+this is due when img is loaded later 
+to fix this we can hardcode the width and height of img

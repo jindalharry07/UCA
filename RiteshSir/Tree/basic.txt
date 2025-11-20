@@ -1,0 +1,7 @@
+Red-Black Tree ke rules (high level):
+
+- Har node RED ya BLACK hoti hai.
+- Root hamesha BLACK hota hai.
+- Koi bhi RED node ka RED child nahi ho sakta.
+- Har path root se leaf tak same number of BLACK nodes rakhta hai.
+- Null (leaf) nodes ko BLACK maana jaata hai.
