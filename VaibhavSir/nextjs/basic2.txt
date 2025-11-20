@@ -36,3 +36,21 @@ Response
 - Status Code
   - success - 200, 201, 202, 204 (2xx)
   - failure
+
+
+
+db.json basically ek JSON file hoti hai jo data store karne ke liye use hoti hai.
+
+JSON ka matlab hai JavaScript Object Notation.
+
+Ye ek file hai jisme aap objects aur arrays ki form me data store kar sakte ho, jaise products, users, etc.
+
+Ye database ki tarah kaam kar sakta hai, lekin lightweight aur file-based hai (real database jaise MySQL ya MongoDB ki tarah server nahi chahiye).
+
+- fs.readFileSync reads the file every time the /products route is accessed.
+
+- res.json(products) sends the data as JSON.
+
+
+
+Nodejs server -> It is basically a service running in the background
