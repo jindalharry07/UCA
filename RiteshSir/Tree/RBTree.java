@@ -71,13 +71,13 @@ public class RBTree<Key extends Comparable<Key>, Value> {
 
   // Filp Color
   private void flipColor(Node n) {
+    n.color = !n.color;
     if (n.left != null) {
-      n.left.color = n.left.color;
+      n.left.color = !n.left.color;
     }
     if (n.right != null) {
-      n.right.color = n.right.color;
+      n.right.color = !n.right.color;
     }
-    n.color = !n.color;
   }
 
   private Node put(Node node, Key key, Value val) {
@@ -155,6 +155,20 @@ public class RBTree<Key extends Comparable<Key>, Value> {
     inorder(x.right);
   }
 
+  private int height(Node n) {
+    if (n == null) {
+      return 0;
+    }
+
+    int leftheight = height(n.left);
+    int rightheight = height(n.right);
+    return 1 + Math.max(leftheight, rightheight);
+  }
+
+  public int height() {
+    return height(this.root);
+  }
+
   public static void main(String[] args) {
     RBTree<Integer, String> tree = new RBTree<>();
 
@@ -171,6 +185,7 @@ public class RBTree<Key extends Comparable<Key>, Value> {
 
     // Check size
     assert tree.size() == 5 : "Size should be 5 after 5 inserts";
+    System.out.println("The height of tree: " + tree.height());
 
     // Check basic gets
     assert "ten".equals(tree.get(10)) : "Value for 10 should be 'ten'";

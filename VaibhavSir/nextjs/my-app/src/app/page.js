@@ -13,8 +13,14 @@ export default async function Home() {
   function sleep(sleepTime) {
     return new Promise((resolve) => setTimeout(resolve, sleepTime));
   }
-  await sleep(2000);
-  console.log("Slept for 10 seconds");
+  // await sleep(2000);
+  // console.log("Slept for 10 seconds");
+
+  // const productsFromServer = await fetch("https://localhost:5000/products",{
+  //   method: "GET",
+  // })
+  // console.log(productsFromServer);
+  
   // -----------------------------------------------------
 
   const products = [

@@ -54,3 +54,5 @@ Ye database ki tarah kaam kar sakta hai, lekin lightweight aur file-based hai (r
 
 
 Nodejs server -> It is basically a service running in the background
+
+cors error is always browser error not server

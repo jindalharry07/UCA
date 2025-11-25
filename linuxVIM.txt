@@ -1,0 +1,87 @@
+Here is the cleanest and easiest Vim command cheat sheet — everything you actually need for fast editing.
+
+🚀 VIM Essentials Cheat Sheet (Beginner → Pro)
+🟢 ENTER & EXIT
+vim file.txt       # open file
+:q                 # quit
+:q!                # quit without saving
+:w                 # save
+:wq                # save & quit
+:x                 # save & quit
+:w newfile.txt     # save to new file
+
+🟡 MODES
+i     # insert mode (start typing)
+a     # insert after cursor
+o     # new line below & insert
+Esc   # back to normal mode
+
+🔵 MOVE CURSOR
+h  # left
+j  # down
+k  # up
+l  # right
+
+0        # go to start of line
+$        # go to end of line
+gg       # go to start of file
+G        # go to end of file
+:number  # go to line number
+w        # next word
+b        # previous word
+
+📝 EDITING TEXT
+x        # delete character
+dd       # delete (cut) line
+yy       # copy line
+p        # paste after cursor
+P        # paste before cursor
+u        # undo
+Ctrl+r   # redo
+
+dw       # delete word
+D        # delete till end of line
+cw       # change word (delete + insert)
+cc       # change full line
+
+🔍 SEARCH
+/text         # search down
+?text         # search up
+n             # next match
+N             # previous match
+
+✏️ REPLACE
+Replace text in entire file:
+:%s/old/new/g
+
+Replace one occurrence:
+:s/old/new
+
+Replace with confirmation:
+:%s/old/new/gc
+
+📂 WORKING WITH MULTIPLE FILES
+:e file.txt         # open another file
+:bn                 # next buffer
+:bp                 # previous buffer
+
+📌 VISUAL MODE (select text)
+v        # enter visual mode (character select)
+V        # line select
+Ctrl+v   # block select (column mode)
+
+y        # copy selection
+d        # delete selection
+p        # paste selection
+
+🪄 INDENTING
+>>   # indent line
+<<   # unindent line
+=    # auto-indent selection (after Visual mode)
+
+🎯 SAVE TIME: MOST USEFUL COMBOS
+ddp       # move line down
+yyP       # duplicate line
+ci"       # change text inside quotes
+ci(       # change inside parentheses
+viw       # select inner word

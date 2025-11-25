@@ -80,10 +80,7 @@ app.post("/products", (req, res) => {
 
       if (index !== -1) {
         // Update existing product
-        productsDataFromDB[index] = {
-          ...productsDataFromDB[index],
-          ...newProduct,
-        };
+        productsDataFromDB[index] = {...productsDataFromDB[index],...newProduct,};
       } else {
         // Add new product
         productsDataFromDB.push(newProduct);
@@ -91,9 +88,7 @@ app.post("/products", (req, res) => {
 
       currentDBData.products = productsDataFromDB;
 
-      fileSystem.writeFile(
-        "./db.json",
-        JSON.stringify(currentDBData, null, 2),
+      fileSystem.writeFile("./db.json", JSON.stringify(currentDBData, null, 2),
         (err) => {
           if (err) {
             return res.status(500).json({ message: "Failed to save product" });
@@ -114,6 +109,66 @@ app.post("/products", (req, res) => {
 });
 
 // Write put and delete
+function readDB() {
+  const data = fileSystem.readFileSync("./db.json", "utf-8");
+  return JSON.parse(data);
+}
+
+function writeDB(data, res, successMessage) {
+  fileSystem.writeFile("./db.json", JSON.stringify(data, null, 2), (err) => {
+    if (err) {
+      return res.status(500).json({ message: "Failed to write database" });
+    }
+    res.json({ message: successMessage, products: data.products });
+  });
+}
+
+app.put("/products/:id", (res, req)=>{
+  const id = req.params.id;
+  const updatedData = res.body;
+
+  try{
+    const db = resDB();
+    const products = db.products;
+
+    const index = products.findIndex((p) => p.id.toString() === id.toString());
+
+    if(index === -1) {
+      return res.status(404).json({message: "Product don't found!"});
+    }
+
+    products[index] = {...products[index], ...updatedData};
+    writeDB(db, res, "Product updated successfully");
+  } catch (err) {
+    res.status(500).json({ message: "Failed to update product" });
+  }
+})
+
+app.delete("/products/:id", (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const db = readDB();
+    const products = db.products;
+
+    const index = products.findIndex((p) => p.id.toString() === id.toString());
+    if (index === -1) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    products.splice(index, 1);
+
+    writeDB(db, res, "Product deleted successfully");
+  } catch (err) {
+    res.status(500).json({ message: "Failed to delete product" });
+  }
+});
+
+// Sample input : localhost:5000/products? id=3& name=NewName
+app.put("/products", (req, res) => {
+  let params = req.query;// used ofor multiple queries
+  let body = req.body;
+})
 
 // Start server
 app.listen(port, () => {

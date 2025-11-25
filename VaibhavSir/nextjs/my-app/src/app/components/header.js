@@ -17,6 +17,11 @@ function Header() {
       </Link>
       <div style={{margin: "5px"}}>
         <Button variant="primary">
+          <Link href="/addproduct">
+            <h2>Add Product</h2>
+          </Link>
+        </Button>
+        <Button variant="primary">
           <Link href="/login">
             <h2>Login</h2>
           </Link>
