@@ -22,6 +22,13 @@ const app = express();
 app.use(express.json());
 const fileSystem = require("fs");
 
+app.use("/*splat", function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next(); // ye next route ko continue karne ke liye important hai
+});
+
 // Helper function to read db.json
 // const productsData = require("./db.json");
 function getProducts() {
@@ -39,23 +46,19 @@ app.get("/", (req, res) => {
 
 // Products page
 app.get("/products", (req, res) => {
-  // res.json(productsData.products);
-
   fileSystem.readFile("./db.json", "utf8", (error, data) => {
     if (error) {
-      console.error("Error reading db.json:", error);
-      return res.status(500).json({ error: "Failed to read products" });
+      console.error("Error reading database file: ", error);
+      res.status(500).json({ message: "Internal server error" });
     }
+    // console.log("Data from database: ", data);
+    const currentDBData = JSON.parse(data);
+    // console.log("Formatted data from database: ", currentDBData);
+    const productsDataFromDB = currentDBData.products;
 
-    const currentDBdata = JSON.parse(data);
-    const products = currentDBdata.products;
-
-    console.log("Data from DataBase:", products);
-    res.json(products);
+    console.log("Products data from database: ", productsDataFromDB);
+    res.json(productsDataFromDB);
   });
-
-  // const products = getProducts();
-  // res.json(products);
 });
 
 app.post("/products", (req, res) => {
@@ -80,7 +83,10 @@ app.post("/products", (req, res) => {
 
       if (index !== -1) {
         // Update existing product
-        productsDataFromDB[index] = {...productsDataFromDB[index],...newProduct,};
+        productsDataFromDB[index] = {
+          ...productsDataFromDB[index],
+          ...newProduct,
+        };
       } else {
         // Add new product
         productsDataFromDB.push(newProduct);
@@ -88,7 +94,9 @@ app.post("/products", (req, res) => {
 
       currentDBData.products = productsDataFromDB;
 
-      fileSystem.writeFile("./db.json", JSON.stringify(currentDBData, null, 2),
+      fileSystem.writeFile(
+        "./db.json",
+        JSON.stringify(currentDBData, null, 2),
         (err) => {
           if (err) {
             return res.status(500).json({ message: "Failed to save product" });
@@ -123,26 +131,26 @@ function writeDB(data, res, successMessage) {
   });
 }
 
-app.put("/products/:id", (res, req)=>{
+app.put("/products/:id", (res, req) => {
   const id = req.params.id;
   const updatedData = res.body;
 
-  try{
-    const db = resDB();
+  try {
+    const db = readDB();
     const products = db.products;
 
     const index = products.findIndex((p) => p.id.toString() === id.toString());
 
-    if(index === -1) {
-      return res.status(404).json({message: "Product don't found!"});
+    if (index === -1) {
+      return res.status(404).json({ message: "Product don't found!" });
     }
 
-    products[index] = {...products[index], ...updatedData};
+    products[index] = { ...products[index], ...updatedData };
     writeDB(db, res, "Product updated successfully");
   } catch (err) {
     res.status(500).json({ message: "Failed to update product" });
   }
-})
+});
 
 app.delete("/products/:id", (req, res) => {
   const id = req.params.id;
@@ -166,9 +174,9 @@ app.delete("/products/:id", (req, res) => {
 
 // Sample input : localhost:5000/products? id=3& name=NewName
 app.put("/products", (req, res) => {
-  let params = req.query;// used ofor multiple queries
+  let params = req.query; // used ofor multiple queries
   let body = req.body;
-})
+});
 
 // Start server
 app.listen(port, () => {

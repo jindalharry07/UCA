@@ -56,3 +56,30 @@ Ye database ki tarah kaam kar sakta hai, lekin lightweight aur file-based hai (r
 Nodejs server -> It is basically a service running in the background
 
 cors error is always browser error not server
+
+SPLAT
+1. “splat” = wildcard route (catch-all route)
+Express me jab tum likhte ho:
+
+app.use("/*splat", ...)
+
+To iska matlab:
+Ye route sab URLs ko match karega
+/abc, /xyz/123, /anything/here/also, sab.
+
+Yani catch-all route.
+
+2. Why use splat (“” or “/splat”)?
+
+✔ 1. To apply global headers
+
+CORS allow karna
+Access-Control headers set karna
+Security headers add karna
+
+✔ 2. To catch all API requests
+Agar koi random URL aaye, to bhi Express reply de de.
+
+*“/splat” Express.js me ek wildcard pattern hota hai jo sab incoming routes ko match karta hai.
+Iska use global middleware apply karne ke liye hota hai — jaise CORS headers, logging, or global settings.
+Splat ka matlab hota hai: “sab requests ko catch karo”.

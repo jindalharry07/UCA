@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Button from "./components/button";
 import ProductsListAlias from "@/app/components/ProductList";
 
 // Cache revalidation / Disable caching for this page with 0 value
@@ -16,43 +17,47 @@ export default async function Home() {
   // await sleep(2000);
   // console.log("Slept for 10 seconds");
 
-  // const productsFromServer = await fetch("https://localhost:5000/products",{
-  //   method: "GET",
-  // })
-  // console.log(productsFromServer);
-  
+  const productsFromServer = await fetch("http://localhost:5000/products", {
+    method: "GET",
+  });
+  const productsDataFromJServer = await productsFromServer.json();
+  console.log(
+    "----------Fetched products from server: ",
+    productsDataFromJServer
+  );
+
   // -----------------------------------------------------
 
-  const products = [
-    {
-      id: 1,
-      name: "Product 1",
-      price: "50$",
-      tag: "Top seller",
-      image: "https://placehold.co/300x200",
-    },
-    {
-      id: 2,
-      name: "Product 2",
-      price: "150$",
-      tag: "Recommended",
-      image: "https://placehold.co/300x200",
-    },
-    {
-      id: 3,
-      name: "Product 3",
-      price: "20$",
-      tag: "On Sale",
-      image: "https://placehold.co/300x200",
-    },
-    {
-      id: 4,
-      name: "Product 4",
-      price: "800$",
-      tag: "Best price",
-      image: "https://placehold.co/300x200",
-    },
-  ];
+  // const products = [
+  //   {
+  //     id: 1,
+  //     name: "Product 1",
+  //     price: "50$",
+  //     tag: "Top seller",
+  //     image: "https://placehold.co/300x200",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Product 2",
+  //     price: "150$",
+  //     tag: "Recommended",
+  //     image: "https://placehold.co/300x200",
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Product 3",
+  //     price: "20$",
+  //     tag: "On Sale",
+  //     image: "https://placehold.co/300x200",
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "Product 4",
+  //     price: "800$",
+  //     tag: "Best price",
+  //     image: "https://placehold.co/300x200",
+  //   },
+  // ];
 
   return (
     <>
@@ -61,7 +66,21 @@ export default async function Home() {
       </div>
 
       {/* <div></div> */}
-      <ProductsListAlias products={products} />
+      <ProductsListAlias products={productsDataFromJServer} />
+
+      <div>
+        <section className="border-2 border-solid py-8">
+          <div className="max-w-6xl mx-auto text-center px-4">
+            <h2 className="text-4xl font-bold mb-4">
+              Discover the Best Deals Online
+            </h2>
+            <p className="text-lg text-gray-600 mb-6">
+              Shop thousands of products from top brands at unbeatable prices.
+            </p>
+          </div>
+          <Button variant="light">Take me to Login page</Button>
+        </section>
+      </div>
     </>
   );
 }
@@ -71,3 +90,20 @@ export default async function Home() {
 // /p/poduct2
 
 // /p/product1000
+
+//------------------------------
+// db.json (file)
+//       ↓
+// Express server (localhost:5000/products)
+//       ↓
+// fetch() in page.js
+//       ↓
+// productsDataFromJServer (array)
+//       ↓
+// <ProductListAlias products={array} />
+//       ↓
+// ProductList component
+//       ↓
+// products.map(...)
+//       ↓
+// UI Cards Render

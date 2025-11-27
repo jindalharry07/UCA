@@ -1,24 +1,40 @@
 {
   "products": [
     {
-      "id": 1,
-      "name": "Laptop",
-      "price": 1200
+      "id": "1",
+      "name": "Wireless Mouse",
+      "price": 25.99,
+      "category": "Electronics",
+      "stock": 150,
+      "image": "https://placehold.co/300x250"
     },
     {
-      "id": 2,
-      "name": "Phone",
-      "price": 800
+      "id": "2",
+      "name": "Product 2",
+      "price": 150,
+      "tag": "Recommended",
+      "image": "https://placehold.co/300x200"
     },
     {
-      "id": 3,
-      "name": "Headphones",
-      "price": 100
+      "id": "3",
+      "name": "Product 3",
+      "price": 20,
+      "tag": "On Sale",
+      "image": "https://placehold.co/300x200"
     },
     {
-      "id": 4,
-      "name": "phone",
-      "price": 1000
+      "id": "4",
+      "name": "Product 4",
+      "price": 800,
+      "tag": "Best price",
+      "image": "https://placehold.co/300x200"
+    },
+    {
+      "id": "5",
+      "name": "Product 5",
+      "price": 8000,
+      "tag": "Best price*",
+      "image": "https://placehold.co/300x200"
     }
   ]
 }
