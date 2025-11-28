@@ -83,3 +83,18 @@ Agar koi random URL aaye, to bhi Express reply de de.
 *“/splat” Express.js me ek wildcard pattern hota hai jo sab incoming routes ko match karta hai.
 Iska use global middleware apply karne ke liye hota hai — jaise CORS headers, logging, or global settings.
 Splat ka matlab hota hai: “sab requests ko catch karo”.
+
+
+app.use("/products", productRoutes) ka faayda yeh hai ki aap multiple routes ko ek hi folder/file me group karke, clean tarike se Express app me add kar sakte ho.
+
+
+
+
+
+MongoDB
+No Sql db
+
+Table -> Collection
+Row -> Document
+creating structure is not madatory here but we can create 
+type of data - Transactional

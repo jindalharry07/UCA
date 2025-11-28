@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Button from "./components/button";
-import ProductsListAlias from "@/app/components/ProductList";
+import ProductsListAlias from "@/app/components/productList";
+
 
 // Cache revalidation / Disable caching for this page with 0 value
 // export const revalidate = 10;
@@ -78,7 +79,7 @@ export default async function Home() {
               Shop thousands of products from top brands at unbeatable prices.
             </p>
           </div>
-          <Button variant="light">Take me to Login page</Button>
+          {/* <Button variant="light">Take me to Login page</Button> */}
         </section>
       </div>
     </>
@@ -90,6 +91,7 @@ export default async function Home() {
 // /p/poduct2
 
 // /p/product1000
+
 
 //------------------------------
 // db.json (file)

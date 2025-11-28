@@ -35,6 +35,13 @@
       "price": 8000,
       "tag": "Best price*",
       "image": "https://placehold.co/300x200"
+    },
+    {
+      "id": 1764259201136,
+      "name": "hair dryer",
+      "price": "111",
+      "tag": "qwert",
+      "image": "https://placehold.co/300x200"
     }
   ]
 }

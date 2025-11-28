@@ -1,33 +1,28 @@
 import Link from "next/link";
 import Button from "./button";
-
 function Header() {
   return (
-    <div
-      style={{
-        backgroundColor: "grey",
-        padding: "1px 20px",
-        margin: "0px -20px",
-        display: "flex",
-        justifyContent: "space-between",
-      }}
-    >
+    <header style={{
+      backgroundColor: "grey",
+      padding: "2px 20px",
+      margin: "0 -20px",
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center"
+    }}>
       <Link href="/">
         <h1>E-Com</h1>
       </Link>
-      <div style={{margin: "5px"}}>
-        <Button variant="primary">
-          <Link href="/addproduct">
-            <h2>Add Product</h2>
-          </Link>
-        </Button>
-        <Button variant="primary">
+      <div className="display-flex">
           <Link href="/login">
-            <h2>Login</h2>
+          <Button variant="primary">Login</Button>      
           </Link>
-        </Button>
+          <Link href="/addproduct">
+          <Button variant="primary">Add Product</Button>
+          </Link>
       </div>
-    </div>
+      
+    </header>
   );
 }
 

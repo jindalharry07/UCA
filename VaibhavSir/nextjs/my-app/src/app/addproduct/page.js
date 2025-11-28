@@ -1,129 +1,115 @@
 "use client";
-import React, { useState } from "react";
+import React, { useRef } from "react";
+import Button from "../components/button";
 
 export default function AddProductPage() {
-  const [productName, setProductName] = useState("");
-  const [price, setPrice] = useState("");
-  const [description, setDescription] = useState("");
-  const [image, setImage] = useState("");
+  const nameRef = useRef();
+  const priceRef = useRef();
+  const descRef = useRef();
+  const imgRef = useRef();
 
-  const addProductHandler = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+    const newProduct = {
+        id: Date.now(), // temporary ID
+        name: nameRef.current.value,
+        price: priceRef.current.value,
+        tag: descRef.current.value,
+        image: imgRef.current.value,
+    };
+    
+    alert("Product added");
+    console.log("New Product:", newProduct);
 
-    const productData = {
-      productName,
-      price,
-      description,
-      image,
+    fetch("http://localhost:5000/products", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newProduct),
+      })
+        .then((response) => {
+          console.log("Response from server after adding product: ", response);
+          window.alert("Product added successfully!");
+        })
+        .catch((error) => {
+          console.error("Error while adding product: ", error);
+          window.alert("Failed to add product.");
+        });
+
+      console.log("Product Data: ", productData);
+      console.log("Name Ref using useRef: ", nameRef.current);
+      console.log("Name Ref using DOM: ", document.getElementById("name"));
     };
 
-    console.log("Product Added:", productData);
-
-    // Reset form
-    setProductName("");
-    setPrice("");
-    setDescription("");
-    setImage("");
-  };
-
-  const pageStyle = {
-    minHeight: "100vh",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#f5f5f5",
-  };
-
-  const formStyle = {
-    width: "350px",
-    padding: "25px",
-    backgroundColor: "#fff",
-    borderRadius: "10px",
-    boxShadow: "0 3px 10px rgba(0,0,0,0.1)",
-    display: "flex",
-    flexDirection: "column",
-  };
-
-  const inputStyle = {
-    marginBottom: "15px",
-    padding: "10px",
-    fontSize: "15px",
-    borderRadius: "6px",
-    border: "1px solid #ccc",
-  };
-
-  const buttonStyle = {
-    padding: "12px",
-    backgroundColor: "#d44a13ff",
-    color: "white",
-    fontSize: "16px",
-    border: "none",
-    borderRadius: "6px",
-    cursor: "pointer",
-    marginTop: "10px",
-  };
-
-  const linkStyle = {
-    textAlign: "center",
-    marginTop: "15px",
-    color: "#007BFF",
-    textDecoration: "none",
-  };
-
   return (
-    <div style={pageStyle}>
-      <form style={formStyle} onSubmit={addProductHandler}>
-        <h2 style={{ textAlign: "center", marginBottom: "20px" }}>
-          Add Product
-        </h2>
+    <>
+        <h1 className="text-center text-2xl font-bold mt-10">Add a Prouct</h1>
+      <form  className="max-w-sm mx-auto mt-20 border-1 p-8 "  >
+        
+        {/* Product Name */}
+        <div className="mb-5">
+          <label htmlFor="name" className="block mb-2.5 text-sm font-medium text-heading">
+            Product Name
+          </label>
+          <input
+            ref={nameRef}
+            type="text"
+            id="name"
+            className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+            placeholder="Enter product name"
+            required
+          />
+        </div>
 
-        <input
-          type="text"
-          placeholder="Product Name"
-          style={inputStyle}
-          value={productName}
-          onChange={(e) => setProductName(e.target.value)}
-          required
-        />
+        {/* Price */}
+        <div className="mb-5">
+          <label htmlFor="price" className="block mb-2.5 text-sm font-medium text-heading">
+            Price
+          </label>
+          <input
+            ref={priceRef}
+            type="number"
+            id="price"
+            step="0.01"
+            className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+            placeholder="Enter price"
+            required
+          />
+        </div>
 
-        <input
-          type="number"
-          placeholder="Price"
-          style={inputStyle}
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-          required
-        />
+        {/* Description */}
+        <div className="mb-5">
+          <label htmlFor="tag" className="block mb-2.5 text-sm font-medium text-heading">
+           tag
+          </label>
+          <textarea
+            ref={descRef}
+            id="tag"
+            className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+            rows="3"
+            placeholder="Product description"
+            required
+          ></textarea>
+        </div>
 
-        <textarea
-          placeholder="Description"
-          style={{
-            ...inputStyle,
-            height: "80px",
-            resize: "none",
-          }}
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          required
-        />
+        {/* Image URL */}
+        <div className="mb-5">
+          <label htmlFor="image" className="block mb-2.5 text-sm font-medium text-heading">
+            Image URL
+          </label>
+          <input
+            ref={imgRef}
+            type="url"
+            id="image"
+            className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+            placeholder="https://example.com/image.jpg"
+            required
+          />
+        </div>
 
-        <input
-          type="text"
-          placeholder="Image URL"
-          style={inputStyle}
-          value={image}
-          onChange={(e) => setImage(e.target.value)}
-          required
-        />
-
-        <button type="submit" style={buttonStyle}>
-          Add Product
-        </button>
-
-        <a href="/" style={linkStyle}>
-          Go to Home
-        </a>
+        {/* Submit Button */}
+        <Button variant="light" onClick={handleSubmit}>Add Product</Button>
       </form>
-    </div>
+       <a href="/" >Go to Home</a>
+    </>
   );
 }
