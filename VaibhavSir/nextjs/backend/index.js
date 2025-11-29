@@ -21,10 +21,29 @@ var port = 5000;
 import express from "express";
 // const fileSystem = require("fs");
 import bodyParser from "body-parser";
-import fileSystem from "fs";
+// import mongoose from "mongoose";
+import "./config/dbConnection.js"
 
 // import the routes
 import productRoutes from "./routes/products.js"
+
+// async function connectDB() {
+//   try {
+//     await mongoose.connect("mongodb://127.0.0.1:27017/nextjsClass");
+//     console.log("MongoDB connected successfully");
+//   } catch (err) {
+//     console.error("MongoDB connection error:", err);
+//   }
+// }
+
+// connectDB();
+
+// var dbConnection = mongoose.connection;
+// console.log("The db connection instance is : ", dbConnection);
+
+// mongoose.Schema
+// mongoose.Model
+
 
 const app = express();
 app.use(bodyParser.json());

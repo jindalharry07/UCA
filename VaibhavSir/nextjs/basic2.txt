@@ -98,3 +98,55 @@ Table -> Collection
 Row -> Document
 creating structure is not madatory here but we can create 
 type of data - Transactional
+
+
+
+add path variable to mongo community and shell in enviorment variables
+
+create folder dbData
+run -
+D:\UCA\VaibhavSir\nextjs\dbData>mongod --dbpath .
+
+Server : MongoDB(core)
+client : Node js application, mongo shell, compass
+MongoDB Installation
+- Install mongodb server - servive or we can actuall db
+- Install mongodsh - Mongo client
+- Install 
+
+connect new cmd 
+mongosh
+show dbs
+
+use local
+
+show collections --inside tables
+
+db --shows current db
+
+use nextjsClass
+
+db.products.insertOne({ name: "Mobile 1" }) 
+{
+  acknowl edged: true,
+  insertedld: Objectld(' 692a8ba9fd7aa60f3bIe2621 ')
+}
+
+
+db.products.find()
+
+db.products.insertOne({ name: "Mobile 2", prices: 25 })
+db.products.find({ "name": "Mobile 2" })
+
+
+
+
+
+npm i mongoose
+MongoDB does not have schema but mongoose (library) have act as a middleware . it send request to mongoDB server
+// mongoose.Schema; eg db.products.price
+// mongoose.Model; referece to that collection in a database eg db.products
+// mongoose Connection : reference to database eg db
+
+
+Node.js -> index.js -> routes(products.js) -> model -> database
