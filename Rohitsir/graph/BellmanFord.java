@@ -1,4 +1,4 @@
-public class FloydWarshall {
+public class BellmanFord {
   static class Graph {
     Integer[][] adj;
     int N;
@@ -18,32 +18,35 @@ public class FloydWarshall {
       adj[a][b] = dis;
     }
 
+    // *** Same-style function as Floyd version 1 ***
     public Integer[][] shortestDistanceFromGivenNode() {
-      return floydWarshall();
-    }
+      Integer[][] result = new Integer[N][N];
 
-    private Integer[][] floydWarshall() {
-      Integer[][] dist = new Integer[N][N];
-
-      // copy adj matrix into dist
-      for (int i = 0; i < N; i++) {
-        for (int j = 0; j < N; j++) {
-          dist[i][j] = adj[i][j];
-        }
+      for (int src = 0; src < N; src++) {
+        result[src] = bellmanFord(src);
       }
 
-      // Floyd–Warshall
-      for (int k = 0; k < N; k++) {
-        for (int i = 0; i < N; i++) {
-          for (int j = 0; j < N; j++) {
-            if (dist[i][k] == null || dist[k][j] == null) {
+      return result;
+    }
+
+    private Integer[] bellmanFord(int src) {
+      Integer[] dist = new Integer[N];
+      dist[src] = 0;
+
+      // Relax edges N−1 times
+      for (int iter = 0; iter < N - 1; iter++) {
+        for (int u = 0; u < N; u++) {
+          for (int v = 0; v < N; v++) {
+
+            Integer w = adj[u][v];
+            if (w == null || dist[u] == null) {
               continue;
             }
 
-            int via = dist[i][k] + dist[k][j];
+            int via = dist[u] + w;
 
-            if (dist[i][j] == null || via < dist[i][j]) {
-              dist[i][j] = via;
+            if (dist[v] == null || via < dist[v]) {
+              dist[v] = via;
             }
           }
         }
@@ -53,13 +56,14 @@ public class FloydWarshall {
     }
   }
 
-  public static void main(String[] arg) {
+  public static void main(String[] args) {
     Graph g = new Graph(3);
 
     g.addEdge(0, 1, 10);
     g.addEdge(0, 2, 2);
     g.addEdge(2, 1, 3);
 
+    // *** SAME CALL STYLE AS YOUR FLOYD VERSION 1 ***
     Integer[][] res = g.shortestDistanceFromGivenNode();
 
     for (int i = 0; i < res.length; i++) {
