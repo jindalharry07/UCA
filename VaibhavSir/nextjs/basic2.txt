@@ -150,3 +150,6 @@ MongoDB does not have schema but mongoose (library) have act as a middleware . i
 
 
 Node.js -> index.js -> routes(products.js) -> model -> database
+
+
+
