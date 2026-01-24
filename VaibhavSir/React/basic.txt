@@ -110,6 +110,7 @@ Example use	Counter, form inputs	             API calls, subscriptions, timers
 
 
 3. useRef — What It Is & Why It's Useful
+-- to preserve the value in code in future
 useRef() is a React hook that returns a mutable object with a .current property.
 const myRef = React.useRef(initialValue);
 
